@@ -1,0 +1,68 @@
+name: Amble
+options:
+  bundleIdPrefix: org.biskup
+  developmentLanguage: en
+  deploymentTarget:
+    iOS: "18.0"
+settings:
+  base:
+    DEVELOPMENT_TEAM: GN8NC9KC7Q
+    SWIFT_VERSION: "6.0"
+    SWIFT_EMIT_LOC_STRINGS: YES
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "4"
+packages:
+  AmbleCore:
+    path: ../AmbleCore
+targets:
+  Amble:
+    type: application
+    platform: iOS
+    sources: [Amble, Shared]
+    dependencies:
+      - package: AmbleCore
+      - target: AmbleWidgets
+    info:
+      path: Amble/Info.plist
+      properties:
+        UIBackgroundModes: [bluetooth-central]
+        ITSAppUsesNonExemptEncryption: false
+        CFBundleLocalizations: [en, de]
+        NSSupportsLiveActivities: true
+    entitlements:
+      path: Amble/Amble.entitlements
+      properties:
+        com.apple.developer.healthkit: true
+        com.apple.developer.healthkit.access: []
+        com.apple.security.application-groups: [group.org.biskup.amble]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.biskup.amble
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription: "Amble connects to your walking pad over Bluetooth."
+        INFOPLIST_KEY_NSHealthUpdateUsageDescription: "Amble saves your treadmill walks (distance, energy, steps) to Apple Health."
+        INFOPLIST_KEY_NSHealthShareUsageDescription: "Amble reads your average walking step length and your height to estimate steps."
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+  AmbleWidgets:
+    type: app-extension
+    platform: iOS
+    sources: [AmbleWidgets, Shared]
+    entitlements:
+      path: AmbleWidgets/AmbleWidgets.entitlements
+      properties:
+        com.apple.security.application-groups: [group.org.biskup.amble]
+    info:
+      path: AmbleWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: Amble
+        CFBundleLocalizations: [en, de]
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.biskup.amble.widgets
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: YES

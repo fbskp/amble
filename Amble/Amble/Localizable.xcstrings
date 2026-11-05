@@ -1,0 +1,1901 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "": {
+      "shouldTranslate": false
+    },
+    "%@ and %@ to go. No rush.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch %@ und %@. Keine Eile."
+          }
+        }
+      }
+    },
+    "%@ to %@ km/h, step %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ bis %@ km/h, Schritt %@"
+          }
+        }
+      }
+    },
+    "%@ to go. No rush.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch %@. Keine Eile."
+          }
+        }
+      }
+    },
+    "%lld %%": {
+      "shouldTranslate": false
+    },
+    "%lld more minutes": {
+      "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Minute"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Minuten"
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld more minute"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld more minutes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld more walks": {
+      "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Spaziergang"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Spaziergänge"
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld more walk"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld more walks"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld of %lld": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld von %lld"
+          }
+        }
+      }
+    },
+    "%lld weeks in a row": {
+      "localizations": {
+        "de": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Woche in Folge"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Wochen in Folge"
+                }
+              }
+            }
+          }
+        },
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld week in a row"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld weeks in a row"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "A calm companion for your walking pad.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein ruhiger Begleiter für dein Walking Pad."
+          }
+        }
+      }
+    },
+    "A sloth sleeping": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein schlafendes Faultier"
+          }
+        }
+      }
+    },
+    "A sloth walking": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ein Faultier beim Gehen"
+          }
+        }
+      }
+    },
+    "A week runs from %@ to %@. Both goals must be reached to complete it.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eine Woche läuft von %@ bis %@. Beide Ziele müssen erreicht werden, um sie abzuschließen."
+          }
+        }
+      }
+    },
+    "Achievement unlocked": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erfolg freigeschaltet"
+          }
+        }
+      }
+    },
+    "Achievements unlocked": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erfolge freigeschaltet"
+          }
+        }
+      }
+    },
+    "Amble": {
+      "shouldTranslate": false
+    },
+    "Amble can start and stop the belt and change its speed.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amble kann das Band starten und stoppen und die Geschwindigkeit ändern."
+          }
+        }
+      }
+    },
+    "Amble controls your pad": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amble steuert dein Pad"
+          }
+        }
+      }
+    },
+    "Amble is not allowed to write workouts. Enable it in Settings > Health > Data Access.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amble darf keine Workouts schreiben. Aktiviere das unter Einstellungen > Health > Datenzugriff & Geräte."
+          }
+        }
+      }
+    },
+    "Amble works with pads that follow the standard Bluetooth fitness protocol (FTMS). It has only been verified with one pad model, so others may work only partly. Pads without a step count are normal: Amble estimates steps from distance.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amble funktioniert mit Pads, die das standardisierte Bluetooth-Fitnessprotokoll (FTMS) unterstützen. Es wurde bisher nur mit einem Pad-Modell geprüft, andere funktionieren daher möglicherweise nur teilweise. Pads ohne Schrittzähler sind normal: Amble schätzt die Schritte anhand der Strecke."
+          }
+        }
+      }
+    },
+    "Apple Health": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health"
+          }
+        }
+      }
+    },
+    "Apple Health did not accept your walk from %@, even after several tries, so it was not saved.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health hat deinen Spaziergang vom %@ auch nach mehreren Versuchen nicht angenommen. Er wurde nicht gespeichert."
+          }
+        }
+      }
+    },
+    "Around the Tree": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Um den Baum"
+          }
+        }
+      }
+    },
+    "Average in Health": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durchschnitt in Health"
+          }
+        }
+      }
+    },
+    "Awards": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erfolge"
+          }
+        }
+      }
+    },
+    "Bluetooth is off": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bluetooth ist aus"
+          }
+        }
+      }
+    },
+    "Bluetooth not ready": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bluetooth nicht bereit"
+          }
+        }
+      }
+    },
+    "Bluetooth not supported": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bluetooth wird nicht unterstützt"
+          }
+        }
+      }
+    },
+    "Bluetooth permission denied (Settings > Amble)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bluetooth-Zugriff verweigert (Einstellungen > Amble)"
+          }
+        }
+      }
+    },
+    "Branch to Branch": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Von Ast zu Ast"
+          }
+        }
+      }
+    },
+    "Canopy Crossing": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kronendach-Überquerung"
+          }
+        }
+      }
+    },
+    "Command failed: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Befehl fehlgeschlagen: %@"
+          }
+        }
+      }
+    },
+    "Connect": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbinden"
+          }
+        }
+      }
+    },
+    "Connect a pad": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pad verbinden"
+          }
+        }
+      }
+    },
+    "Connect a pad to see what it supports.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbinde ein Pad, um zu sehen, was es unterstützt."
+          }
+        }
+      }
+    },
+    "Connected": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbunden"
+          }
+        }
+      }
+    },
+    "Connecting to %@...": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbinde mit %@..."
+          }
+        }
+      }
+    },
+    "Connecting...": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbinde..."
+          }
+        }
+      }
+    },
+    "Control your pad": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Steuere dein Pad"
+          }
+        }
+      }
+    },
+    "Copied": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kopiert"
+          }
+        }
+      }
+    },
+    "Copy report": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bericht kopieren"
+          }
+        }
+      }
+    },
+    "Could not connect: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbindung fehlgeschlagen: %@"
+          }
+        }
+      }
+    },
+    "Demo mode": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demo-Modus"
+          }
+        }
+      }
+    },
+    "Demo mode is on": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demo-Modus ist an"
+          }
+        }
+      }
+    },
+    "Demo mode uses a simulated pad, so there is nothing to report. Connect a real pad to see what it supports.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Demo-Modus nutzt ein simuliertes Pad, daher gibt es nichts zu berichten. Verbinde ein echtes Pad, um zu sehen, was es unterstützt."
+          }
+        }
+      }
+    },
+    "Demo pad": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demo-Pad"
+          }
+        }
+      }
+    },
+    "Disconnect": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trennen"
+          }
+        }
+      }
+    },
+    "Disconnected": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Getrennt"
+          }
+        }
+      }
+    },
+    "Distance": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strecke"
+          }
+        }
+      }
+    },
+    "Done": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fertig"
+          }
+        }
+      }
+    },
+    "Early Sloth": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frühes Faultier"
+          }
+        }
+      }
+    },
+    "Elapsed time": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laufzeit"
+          }
+        }
+      }
+    },
+    "Energy": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energie"
+          }
+        }
+      }
+    },
+    "Enter step length": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schrittlänge eingeben"
+          }
+        }
+      }
+    },
+    "Faster": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schneller"
+          }
+        }
+      }
+    },
+    "Finish": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beenden"
+          }
+        }
+      }
+    },
+    "Finish your first walk.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beende deinen ersten Spaziergang."
+          }
+        }
+      }
+    },
+    "First Steps": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erste Schritte"
+          }
+        }
+      }
+    },
+    "Forget": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vergessen"
+          }
+        }
+      }
+    },
+    "Get started": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los geht's"
+          }
+        }
+      }
+    },
+    "Goal": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziel"
+          }
+        }
+      }
+    },
+    "Goal reached. The sloth is proud of you.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziel erreicht. Das Faultier ist stolz auf dich."
+          }
+        }
+      }
+    },
+    "Goals": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziele"
+          }
+        }
+      }
+    },
+    "Hanging On": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Festgeklammert"
+          }
+        }
+      }
+    },
+    "Health data is not available on this device.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Health-Daten sind auf diesem Gerät nicht verfügbar."
+          }
+        }
+      }
+    },
+    "Height: %lld cm": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Größe: %lld cm"
+          }
+        }
+      }
+    },
+    "I understand and will stay in control of my pad.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ich habe verstanden und behalte mein Pad im Griff."
+          }
+        }
+      }
+    },
+    "Keep your walks": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Behalte deine Spaziergänge"
+          }
+        }
+      }
+    },
+    "Last pad": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letztes Pad"
+          }
+        }
+      }
+    },
+    "Leaf Eater": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blattfresser"
+          }
+        }
+      }
+    },
+    "Leave demo mode": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demo-Modus beenden"
+          }
+        }
+      }
+    },
+    "Loading...": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lädt..."
+          }
+        }
+      }
+    },
+    "Minutes": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minuten"
+          }
+        }
+      }
+    },
+    "Minutes per week": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minuten pro Woche"
+          }
+        }
+      }
+    },
+    "Minutes per week: %lld": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minuten pro Woche: %lld"
+          }
+        }
+      }
+    },
+    "My height": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meine Größe"
+          }
+        }
+      }
+    },
+    "Name": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        }
+      }
+    },
+    "Nearby devices": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geräte in der Nähe"
+          }
+        }
+      }
+    },
+    "Next, iOS asks for Apple Health access, then for Bluetooth.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Als Nächstes fragt iOS nach dem Zugriff auf Apple Health und danach auf Bluetooth."
+          }
+        }
+      }
+    },
+    "No pad at hand? Look around in demo mode": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein Pad zur Hand? Demo-Modus ansehen"
+          }
+        }
+      }
+    },
+    "Set your step length for better step counts": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schrittlänge für genauere Schritte festlegen"
+          }
+        }
+      }
+    },
+    "Nice": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Super"
+          }
+        }
+      }
+    },
+    "Night Shift": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nachtschicht"
+          }
+        }
+      }
+    },
+    "No": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nein"
+          }
+        }
+      }
+    },
+    "No pad at hand?": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein Pad zur Hand?"
+          }
+        }
+      }
+    },
+    "No pad connected": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein Pad verbunden"
+          }
+        }
+      }
+    },
+    "No walking pad found yet. A pad accepts only one connection, so make sure no other phone or app is connected to it, including Amble on another device.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch kein Walking Pad gefunden. Ein Pad akzeptiert nur eine Verbindung: Stelle sicher, dass kein anderes Handy und keine andere App damit verbunden ist, auch nicht Amble auf einem anderen Gerät."
+          }
+        }
+      }
+    },
+    "No walking step length found in Apple Health. It needs an iPhone or Apple Watch that has recorded walks, and read access for Amble. Until then your height is used.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In Apple Health wurde keine Schrittlänge gefunden. Dafür braucht es ein iPhone oder eine Apple Watch, die Spaziergänge aufgezeichnet hat, und Lesezugriff für Amble. Bis dahin wird deine Größe verwendet."
+          }
+        }
+      }
+    },
+    "No walks found yet. Amble reads the walks it saved to Apple Health. If you have walked before, allow Amble to read workouts in Settings > Health > Data Access & Devices > Amble.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch keine Spaziergänge gefunden. Amble liest die Spaziergänge, die es in Apple Health gespeichert hat. Wenn du schon früher gegangen bist, erlaube Amble das Lesen von Workouts unter Einstellungen > Health > Datenzugriff & Geräte > Amble."
+          }
+        }
+      }
+    },
+    "Not in range": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht in Reichweite"
+          }
+        }
+      }
+    },
+    "Not reported": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht gemeldet"
+          }
+        }
+      }
+    },
+    "Not tried yet": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch nicht ausprobiert"
+          }
+        }
+      }
+    },
+    "OK": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "Opens quick speeds": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffnet die Schnellauswahl für die Geschwindigkeit"
+          }
+        }
+      }
+    },
+    "Pad": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pad"
+          }
+        }
+      }
+    },
+    "Pad compatibility": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pad-Kompatibilität"
+          }
+        }
+      }
+    },
+    "Pad not reachable": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pad nicht erreichbar"
+          }
+        }
+      }
+    },
+    "Pause": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause"
+          }
+        }
+      }
+    },
+    "Possible walking pad": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mögliches Walking Pad"
+          }
+        }
+      }
+    },
+    "Privacy policy": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datenschutzerklärung"
+          }
+        }
+      }
+    },
+    "Reach your goals": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erreiche deine Ziele"
+          }
+        }
+      }
+    },
+    "Reach your weekly goals 3 weeks in a row.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erreiche deine Wochenziele 3 Wochen in Folge."
+          }
+        }
+      }
+    },
+    "Reach your weekly goals.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erreiche deine Wochenziele."
+          }
+        }
+      }
+    },
+    "Read from Apple Health again": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erneut aus Apple Health lesen"
+          }
+        }
+      }
+    },
+    "Read the safety notice": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sicherheitshinweis lesen"
+          }
+        }
+      }
+    },
+    "Result": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ergebnis"
+          }
+        }
+      }
+    },
+    "Resume": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fortsetzen"
+          }
+        }
+      }
+    },
+    "Safety": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sicherheit"
+          }
+        }
+      }
+    },
+    "Saved": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gespeichert"
+          }
+        }
+      }
+    },
+    "Saves each walk to Apple Health, with distance and estimated steps.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speichert jeden Spaziergang in Apple Health, mit Strecke und geschätzten Schritten."
+          }
+        }
+      }
+    },
+    "Searching...": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suche..."
+          }
+        }
+      }
+    },
+    "Select a pad": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pad auswählen"
+          }
+        }
+      }
+    },
+    "Set speed": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geschwindigkeit einstellen"
+          }
+        }
+      }
+    },
+    "Set weekly goals and watch the sloth cheer you on.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Setze dir Wochenziele und lass dich vom Faultier anfeuern."
+          }
+        }
+      }
+    },
+    "Settings": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einstellungen"
+          }
+        }
+      }
+    },
+    "Share your result on GitHub": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ergebnis auf GitHub teilen"
+          }
+        }
+      }
+    },
+    "Sloth Marathon": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faultier-Marathon"
+          }
+        }
+      }
+    },
+    "Slow and Steady": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Langsam und stetig"
+          }
+        }
+      }
+    },
+    "Slower": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Langsamer"
+          }
+        }
+      }
+    },
+    "Source": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quelle"
+          }
+        }
+      }
+    },
+    "Speed range": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geschwindigkeitsbereich"
+          }
+        }
+      }
+    },
+    "Spend 10 hours walking in total.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbringe insgesamt 10 Stunden mit Gehen."
+          }
+        }
+      }
+    },
+    "Start": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start"
+          }
+        }
+      }
+    },
+    "Start a walk after 9 pm.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starte einen Spaziergang nach 21 Uhr."
+          }
+        }
+      }
+    },
+    "Start a walk before 9 am.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starte einen Spaziergang vor 9 Uhr."
+          }
+        }
+      }
+    },
+    "Start, stop, pause and set the speed over Bluetooth.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starte, stoppe und pausiere das Pad und stelle die Geschwindigkeit per Bluetooth ein."
+          }
+        }
+      }
+    },
+    "Stay close, keep the belt clear when you start, and know how to stop the pad without the app: its remote or its power switch.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bleib in der Nähe, halte das Band beim Start frei und stelle sicher, dass du das Pad ohne die App stoppen kannst: mit seiner Fernbedienung oder dem Netzschalter."
+          }
+        }
+      }
+    },
+    "Step count": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schrittzähler"
+          }
+        }
+      }
+    },
+    "Step length": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schrittlänge"
+          }
+        }
+      }
+    },
+    "Step length at 3 km/h": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schrittlänge bei 3 km/h"
+          }
+        }
+      }
+    },
+    "Step length at normal pace": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schrittlänge bei normalem Tempo"
+          }
+        }
+      }
+    },
+    "Step length: %lld cm": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schrittlänge: %lld cm"
+          }
+        }
+      }
+    },
+    "Steps (est.)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schritte (gesch.)"
+          }
+        }
+      }
+    },
+    "Steps per km at 3 km/h": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schritte pro km bei 3 km/h"
+          }
+        }
+      }
+    },
+    "Stop": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stopp"
+          }
+        }
+      }
+    },
+    "Stop the belt before changing the connection.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stoppe das Band, bevor du die Verbindung änderst."
+          }
+        }
+      }
+    },
+    "Stopping...": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stoppt..."
+          }
+        }
+      }
+    },
+    "Suggested: about 41% of your height.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empfehlung: etwa 41 % deiner Größe."
+          }
+        }
+      }
+    },
+    "Switch the pad on and close other apps that may be connected to it; a pad accepts only one connection. Only pads with the standard Bluetooth fitness machine profile (FTMS) work with Amble.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schalte das Pad ein und schließe andere Apps, die damit verbunden sein könnten; ein Pad akzeptiert nur eine Verbindung. Nur Pads mit dem standardisierten Bluetooth-Fitnessgeräteprofil (FTMS) funktionieren mit Amble."
+          }
+        }
+      }
+    },
+    "That walk lasted less than %lld seconds, so it was not saved to Health.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieser Spaziergang dauerte weniger als %lld Sekunden und wurde deshalb nicht in Health gespeichert."
+          }
+        }
+      }
+    },
+    "The demo uses a simulated pad so you can look around. Demo walks are not saved to Apple Health.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Demo nutzt ein simuliertes Pad, damit du dich umsehen kannst. Demo-Spaziergänge werden nicht in Apple Health gespeichert."
+          }
+        }
+      }
+    },
+    "The pad did not answer.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Pad hat nicht geantwortet."
+          }
+        }
+      }
+    },
+    "The pad does not count steps, so Amble estimates them from distance and belt speed: the slower you walk, the shorter and more frequent your steps are. Enter your step length at normal walking pace. Counts stay approximate.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Pad zählt keine Schritte, deshalb schätzt Amble sie aus Strecke und Bandgeschwindigkeit: Je langsamer du gehst, desto kürzer und häufiger sind die Schritte. Gib deine Schrittlänge bei normalem Gehtempo an. Die Zahlen bleiben Schätzwerte."
+          }
+        }
+      }
+    },
+    "The pad rejected the command (code %u).": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Das Pad hat den Befehl abgelehnt (Code %u)."
+          }
+        }
+      }
+    },
+    "The report contains the pad's name and capabilities, your iOS version and the app version. Nothing else.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Bericht enthält nur den Namen und die Fähigkeiten des Pads, deine iOS-Version und die App-Version. Sonst nichts."
+          }
+        }
+      }
+    },
+    "This device does not offer the standard fitness machine service (FTMS), so Amble cannot control it.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieses Gerät bietet den Standarddienst für Fitnessgeräte (FTMS) nicht an, deshalb kann Amble es nicht steuern."
+          }
+        }
+      }
+    },
+    "This device has no treadmill data, so Amble cannot use it.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieses Gerät liefert keine Laufbanddaten, deshalb kann Amble es nicht verwenden."
+          }
+        }
+      }
+    },
+    "This pad does not support pause.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dieses Pad unterstützt keine Pause."
+          }
+        }
+      }
+    },
+    "Three-Toed": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dreizehig"
+          }
+        }
+      }
+    },
+    "Time": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zeit"
+          }
+        }
+      }
+    },
+    "Treetop Habit": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Baumkronen-Gewohnheit"
+          }
+        }
+      }
+    },
+    "Try the demo": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demo ausprobieren"
+          }
+        }
+      }
+    },
+    "Typical adults: 60 to 80 cm at normal walking pace. Walk a known distance at that pace and divide it by your steps.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Typisch für Erwachsene: 60 bis 80 cm bei normalem Gehtempo. Geh in diesem Tempo eine bekannte Strecke und teile sie durch deine Schritte."
+          }
+        }
+      }
+    },
+    "Unhurried": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ohne Eile"
+          }
+        }
+      }
+    },
+    "Use Amble at your own risk.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Nutzung von Amble erfolgt auf eigene Gefahr."
+          }
+        }
+      }
+    },
+    "Use height from Health (%lld cm)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Größe aus Health verwenden (%lld cm)"
+          }
+        }
+      }
+    },
+    "Verified only with the Sportstech WalkMate. Other pads that use the standard Bluetooth fitness protocol (FTMS) may work, but can behave unexpectedly, for example by changing the speed on its own.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bisher nur mit dem Sportstech WalkMate geprüft. Andere Pads mit dem Bluetooth-Fitnessstandard (FTMS) funktionieren womöglich, können sich aber unerwartet verhalten, zum Beispiel die Geschwindigkeit von selbst ändern."
+          }
+        }
+      }
+    },
+    "Waiting for Bluetooth...": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warte auf Bluetooth..."
+          }
+        }
+      }
+    },
+    "Walk": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gehen"
+          }
+        }
+      }
+    },
+    "Walk 10 km in total.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geh insgesamt 10 km."
+          }
+        }
+      }
+    },
+    "Walk 100 km in total.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geh insgesamt 100 km."
+          }
+        }
+      }
+    },
+    "Walk 3 times in one week.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geh 3-mal in einer Woche."
+          }
+        }
+      }
+    },
+    "Walk 30 minutes in one go.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geh 30 Minuten am Stück."
+          }
+        }
+      }
+    },
+    "Walk 42.2 km in total.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geh insgesamt 42,2 km."
+          }
+        }
+      }
+    },
+    "Walk 60 minutes in one go.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geh 60 Minuten am Stück."
+          }
+        }
+      }
+    },
+    "Walk in 4 weeks in a row.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geh 4 Wochen in Folge."
+          }
+        }
+      }
+    },
+    "Walk not saved": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spaziergang nicht gespeichert"
+          }
+        }
+      }
+    },
+    "Walk too short": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spaziergang zu kurz"
+          }
+        }
+      }
+    },
+    "Walking pad": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Walking Pad"
+          }
+        }
+      }
+    },
+    "Walks": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spaziergänge"
+          }
+        }
+      }
+    },
+    "Walks per week: %lld": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spaziergänge pro Woche: %lld"
+          }
+        }
+      }
+    },
+    "Week": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Woche"
+          }
+        }
+      }
+    },
+    "Weekly goals": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wochenziele"
+          }
+        }
+      }
+    },
+    "Welcome to Amble": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Willkommen bei Amble"
+          }
+        }
+      }
+    },
+    "What this pad reports": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Was dieses Pad meldet"
+          }
+        }
+      }
+    },
+    "Yes": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ja"
+          }
+        }
+      }
+    },
+    "You are using a simulated pad. Walks are not saved to Apple Health.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du nutzt ein simuliertes Pad. Spaziergänge werden nicht in Apple Health gespeichert."
+          }
+        }
+      }
+    },
+    "achievements earned": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erfolge erreicht"
+          }
+        }
+      }
+    },
+    "km/h": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "km/h"
+          }
+        }
+      }
+    },
+    "pad": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pad"
+          }
+        }
+      }
+    },
+    "paused": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pausiert"
+          }
+        }
+      }
+    },
+    "unknown error": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "unbekannter Fehler"
+          }
+        }
+      }
+    },
+    "z": {
+      "shouldTranslate": false
+    },
+    "•": {
+      "shouldTranslate": false
+    }
+  },
+  "version": "1.0"
+}

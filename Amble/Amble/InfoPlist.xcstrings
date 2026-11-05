@@ -1,0 +1,75 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "CFBundleName": {
+      "comment": "Bundle name",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amble"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Amble"
+          }
+        }
+      }
+    },
+    "NSBluetoothAlwaysUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amble verbindet sich über Bluetooth mit deinem Walking Pad."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amble connects to your walking pad over Bluetooth."
+          }
+        }
+      }
+    },
+    "NSHealthShareUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amble liest deine durchschnittliche Schrittlänge und deine Körpergröße, um Schritte zu schätzen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amble reads your average walking step length and your height to estimate steps."
+          }
+        }
+      }
+    },
+    "NSHealthUpdateUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amble speichert deine Spaziergänge auf dem Walking Pad (Strecke, Energie, Schritte) in Apple Health."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Amble saves your treadmill walks (distance, energy, steps) to Apple Health."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

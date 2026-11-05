@@ -1,0 +1,20 @@
+# Build output
+.build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+
+# Generated from Amble/project.yml (run `xcodegen generate` in Amble/)
+Amble/Amble.xcodeproj/
+Amble/Amble/Info.plist
+Amble/Amble/Amble.entitlements
+Amble/AmbleWidgets/AmbleWidgets.entitlements
+
+# Compiled Mac probe tool (build with swiftc, see tools/probe/probe.swift)
+tools/probe/probe
+
+.DS_Store
+
+# Local working files (store listing drafts, protocol notes), not published
+AppStore/
+docs/
