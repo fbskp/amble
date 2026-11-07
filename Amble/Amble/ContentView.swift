@@ -48,8 +48,8 @@ private struct MainTabs: View {
         .onChange(of: scenePhase) { _, phase in
             if phase == .active { Task { await store.refresh() } }
         }
-        .sheet(isPresented: Binding(get: { !store.celebrate.isEmpty }, set: { if !$0 { store.clearCelebration() } })) {
-            UnlockSheet(ids: store.celebrate) { store.clearCelebration() }
+        .sheet(isPresented: Binding(get: { !store.celebrate.isEmpty || !store.celebrateAnimals.isEmpty }, set: { if !$0 { store.clearCelebration() } })) {
+            UnlockSheet(ids: store.celebrate, animals: store.celebrateAnimals) { store.clearCelebration() }
         }
     }
 }

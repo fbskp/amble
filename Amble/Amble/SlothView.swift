@@ -31,6 +31,7 @@ final class SlothKeeper {
 struct SlothView: View {
     let speedKmh: Double
     let isAwake: Bool
+    var companion: Companion = .current
 
     @State private var keeper = SlothKeeper()
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -40,19 +41,19 @@ struct SlothView: View {
             if reduceMotion {
                 Canvas { ctx, size in
                     var c = ctx
-                    SlothArt.draw(&c, size: size, pose: SlothPose(phase: 0, walk: 0, awake: isAwake ? 1 : 0, time: 0))
+                    companion.draw(&c, size: size, pose: SlothPose(phase: 0, walk: 0, awake: isAwake ? 1 : 0, time: 0))
                 }
             } else {
                 TimelineView(.animation) { timeline in
                     Canvas { ctx, size in
                         let pose = keeper.advance(to: timeline.date, speed: speedKmh, awake: isAwake)
                         var c = ctx
-                        SlothArt.draw(&c, size: size, pose: pose)
+                        companion.draw(&c, size: size, pose: pose)
                     }
                 }
             }
         }
         .accessibilityElement()
-        .accessibilityLabel(isAwake ? "A sloth walking" : "A sloth sleeping")
+        .accessibilityLabel(Text(isAwake ? companion.walkingLabel : companion.sleepingLabel))
     }
 }

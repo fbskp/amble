@@ -28,7 +28,8 @@ struct WalkView: View {
                 HStack(spacing: 10) {
                     stepButton("minus", delta: -0.1)
                     // The sloth gives way first when the screen is short.
-                    SlothView(speedKmh: pad.data.speedKmh ?? 0, isAwake: pad.isBeltActive || pad.isStopping || (pad.data.speedKmh ?? 0) > 0.1)
+                    SlothView(speedKmh: pad.data.speedKmh ?? 0, isAwake: pad.isBeltActive || pad.isStopping || (pad.data.speedKmh ?? 0) > 0.1,
+                              companion: GoalsStore.shared.companion)
                         .aspectRatio(SlothArt.designSize.width / SlothArt.designSize.height, contentMode: .fit)
                         .frame(minHeight: 70, maxHeight: 150)
                     stepButton("plus", delta: 0.1)

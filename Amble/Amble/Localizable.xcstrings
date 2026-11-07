@@ -1895,6 +1895,166 @@
     },
     "•": {
       "shouldTranslate": false
+    },
+    "Sloth": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faultier"
+          }
+        }
+      }
+    },
+    "Snail": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schnecke"
+          }
+        }
+      }
+    },
+    "Tortoise": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schildkröte"
+          }
+        }
+      }
+    },
+    "A snail walking": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eine laufende Schnecke"
+          }
+        }
+      }
+    },
+    "A tortoise walking": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eine laufende Schildkröte"
+          }
+        }
+      }
+    },
+    "A snail sleeping": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eine schlafende Schnecke"
+          }
+        }
+      }
+    },
+    "A tortoise sleeping": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eine schlafende Schildkröte"
+          }
+        }
+      }
+    },
+    "Your first companion.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein erster Begleiter."
+          }
+        }
+      }
+    },
+    "Walk 25 km in total.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laufe insgesamt 25 km."
+          }
+        }
+      }
+    },
+    "Walking with you": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Läuft mit dir"
+          }
+        }
+      }
+    },
+    "Tap to choose": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zum Auswählen tippen"
+          }
+        }
+      }
+    },
+    "%@ km to go": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch %@ km"
+          }
+        }
+      }
+    },
+    "Companions": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Begleiter"
+          }
+        }
+      }
+    },
+    "Achievements": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erfolge"
+          }
+        }
+      }
+    },
+    "New companion": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neuer Begleiter"
+          }
+        }
+      }
+    },
+    "joined your walks. Choose it on the Awards tab.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "begleitet jetzt deine Spaziergänge. Wähle es im Reiter „Erfolge“ aus."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

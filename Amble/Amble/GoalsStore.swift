@@ -27,18 +27,33 @@ final class GoalsStore {
     private(set) var report = AchievementReport(unlocked: [:], totals: AchievementTotals())
     /// Achievements earned since the last refresh, to celebrate.
     private(set) var celebrate: [AchievementID] = []
+    /// Animals that joined since the last refresh, to celebrate.
+    private(set) var celebrateAnimals: [AnimalID] = []
+    /// Animals earned through lifetime distance. Stored, so they stay earned if a workout is deleted later.
+    private(set) var unlockedAnimals: Set<AnimalID> = [.sloth]
+    /// The animal walking on the belt; shared with the widgets.
+    var companion: Companion = Companion.current {
+        didSet {
+            guard companion != oldValue else { return }
+            Companion.current = companion
+            WidgetCenter.shared.reloadAllTimelines()
+        }
+    }
 
     private let health = HealthWriter()
     private let defaults = UserDefaults.standard
     private var isRefreshing = false
     private static let unlockedKey = "unlockedAchievements"
     private static let initialisedKey = "achievementsInitialised"
+    private static let animalsKey = "unlockedAnimals"
 
     init() {
         let walks = defaults.object(forKey: "goalWalks") as? Int ?? WeeklyGoals.default.walks
         let minutes = defaults.object(forKey: "goalMinutes") as? Int ?? WeeklyGoals.default.minutes
         goals = WeeklyGoals(walks: walks, minutes: minutes)
         unlocked = Self.loadUnlocked()
+        unlockedAnimals = Self.loadAnimals()
+        if !unlockedAnimals.contains(Companion.current.animal) { companion = .sloth }
     }
 
     var currentWeek: WeekSummary { weeks.last ?? WeekSummary(start: Date()) }
@@ -46,7 +61,35 @@ final class GoalsStore {
     var isCurrentWeekComplete: Bool { goals.isMet(by: currentWeek) }
 
     func progress(_ id: AchievementID) -> Double { unlocked[id] != nil ? 1 : report.progress(id) }
-    func clearCelebration() { celebrate = [] }
+    func clearCelebration() { celebrate = []; celebrateAnimals = [] }
+
+    /// 0...1 progress towards an animal, from lifetime distance.
+    func progress(_ animal: AnimalID) -> Double {
+        unlockedAnimals.contains(animal) ? 1 : animal.progress(distanceMeters: lifetimeDistanceMeters)
+    }
+    /// Debug mode (tap the counter on the Awards tab five times): pretend this much lifetime distance, in km.
+    private(set) var debugDistanceKm: Double? = {
+        let v = UserDefaults.standard.double(forKey: "debugDistanceKm")
+        return v > 0 ? v : nil
+    }()
+    /// What the animals are judged by: the real lifetime distance, unless debug mode overrides it.
+    var lifetimeDistanceMeters: Double { debugDistanceKm.map { $0 * 1000 } ?? report.totals.distanceMeters }
+
+    func setDebugDistance(km: Double?) {
+        debugDistanceKm = km
+        defaults.set(km ?? 0, forKey: "debugDistanceKm")
+        updateAnimals(historyRead: true)
+    }
+
+    /// Back to just the sloth, with the real distance.
+    func debugResetAnimals() {
+        debugDistanceKm = nil
+        defaults.removeObject(forKey: "debugDistanceKm")
+        unlockedAnimals = [.sloth]
+        defaults.removeObject(forKey: Self.animalsKey)
+        companion = .sloth
+        updateAnimals(historyRead: true)
+    }
 
     func persist() {
         defaults.set(goals.walks, forKey: "goalWalks")
@@ -93,6 +136,7 @@ final class GoalsStore {
 
     private func updateAchievements(records: [WalkRecord], calendar: Calendar, historyRead: Bool) {
         report = AchievementEngine.evaluate(walks: records, goals: goals, calendar: calendar)
+        updateAnimals(historyRead: historyRead)
         let earnedNow = report.unlocked.filter { unlocked[$0.key] == nil }
         guard !earnedNow.isEmpty else { return }
 
@@ -106,6 +150,23 @@ final class GoalsStore {
             celebrate = AchievementID.allCases.filter { earnedNow[$0] != nil }
         }
         if historyRead { defaults.set(true, forKey: Self.initialisedKey) }
+    }
+
+    private func updateAnimals(historyRead: Bool) {
+        let earned = Set(AnimalID.unlocked(distanceMeters: lifetimeDistanceMeters))
+        let new = earned.subtracting(unlockedAnimals)
+        guard !new.isEmpty else { return }
+        unlockedAnimals.formUnion(new)
+        defaults.set(unlockedAnimals.map(\.rawValue), forKey: Self.animalsKey)
+        // Same rule as achievements: no celebrating the first read or a sudden pile.
+        if debugDistanceKm != nil || (defaults.bool(forKey: Self.initialisedKey) && new.count <= 1) {
+            celebrateAnimals = AnimalID.allCases.filter { new.contains($0) }
+        }
+    }
+
+    private static func loadAnimals() -> Set<AnimalID> {
+        let raw = UserDefaults.standard.stringArray(forKey: animalsKey) ?? []
+        return Set(raw.compactMap(AnimalID.init(rawValue:))).union([.sloth])
     }
 
     private static func loadUnlocked() -> [AchievementID: Date] {

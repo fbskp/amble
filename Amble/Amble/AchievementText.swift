@@ -39,3 +39,44 @@ extension AchievementID {
         }
     }
 }
+
+extension Companion {
+    var animal: AnimalID { AnimalID(rawValue: rawValue) ?? .sloth }
+
+    var name: LocalizedStringResource {
+        switch self {
+        case .sloth: "Sloth"
+        case .snail: "Snail"
+        case .tortoise: "Tortoise"
+        }
+    }
+
+    var walkingLabel: LocalizedStringResource {
+        switch self {
+        case .sloth: "A sloth walking"
+        case .snail: "A snail walking"
+        case .tortoise: "A tortoise walking"
+        }
+    }
+
+    var sleepingLabel: LocalizedStringResource {
+        switch self {
+        case .sloth: "A sloth sleeping"
+        case .snail: "A snail sleeping"
+        case .tortoise: "A tortoise sleeping"
+        }
+    }
+}
+
+extension AnimalID {
+    var companion: Companion { Companion(rawValue: rawValue) ?? .sloth }
+
+    /// The unlock requirement, e.g. "Walk 10 km in total."
+    var detail: LocalizedStringResource {
+        switch self {
+        case .sloth: "Your first companion."
+        case .snail: "Walk 10 km in total."
+        case .tortoise: "Walk 25 km in total."
+        }
+    }
+}
