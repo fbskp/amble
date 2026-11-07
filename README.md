@@ -1,8 +1,20 @@
+<p align="center">
+  <img src="docs/icon.png" alt="Amble app icon" width="128">
+</p>
+
 # Amble
 
 A calm iPhone companion for Bluetooth walking pads. Amble connects to a pad over the standard Bluetooth
 fitness machine profile (FTMS), shows your walk live, controls the belt, and saves each walk to Apple Health,
 which the pad vendor's own app did not do.
+
+**[Join the public beta on TestFlight](https://testflight.apple.com/join/FdvrnEd4)** (iPhone, iOS 18 or later)
+
+<p align="center">
+  <img src="docs/screenshots/walk.png" alt="Walking screen with the sloth on the belt, showing speed, steps, distance, time and energy" width="280">
+  &nbsp;&nbsp;
+  <img src="docs/screenshots/awards.png" alt="Awards screen with sloth-themed achievements" width="280">
+</p>
 
 Amble is a personal project. It is **not affiliated with** Sportstech, FITHOME or the pad's "WalkMate" brand.
 
