@@ -6,6 +6,7 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showNotice = false
     @Bindable private var goalsStore = GoalsStore.shared
+    @Bindable private var pad = PadConnection.shared
 
     var body: some View {
         NavigationStack {
@@ -25,12 +26,6 @@ struct SettingsView: View {
                     Text("The pad does not count steps, so Amble estimates them from distance and belt speed: the slower you walk, the shorter and more frequent your steps are. Enter your step length at normal walking pace. Counts stay approximate.")
                 }
 
-                Section("Result") {
-                    LabeledContent("Step length at normal pace", value: "\(stride.strideMeters.formatted(.number.precision(.fractionLength(2)))) m")
-                    LabeledContent("Step length at 3 km/h", value: "\(slowStepLength.formatted(.number.precision(.fractionLength(2)))) m")
-                    LabeledContent("Steps per km at 3 km/h", value: "\(Int((1000 / slowStepLength).rounded()))")
-                }
-
                 Section {
                     Stepper(value: $goalsStore.goals.walks, in: GoalsStore.walkRange) {
                         Text("Walks per week: \(goalsStore.goals.walks)")
@@ -42,6 +37,14 @@ struct SettingsView: View {
                     Text("Weekly goals")
                 } footer: {
                     Text("A week runs from \(weekdayName) to \(lastWeekdayName). Both goals must be reached to complete it.")
+                }
+
+                Section {
+                    Toggle("Disconnect automatically", isOn: $pad.disconnectsWhenIdle)
+                } header: {
+                    Text("Connection")
+                } footer: {
+                    Text("Some pads accept only one Bluetooth connection. With this option, Amble disconnects from the pad automatically while in the background, as soon as the pad is switched off or nothing has happened for 10 minutes. Then another device can connect. Opening Amble reconnects.")
                 }
 
                 // Last on purpose: references to read, not things to set.
@@ -98,10 +101,6 @@ struct SettingsView: View {
         }
         Text("Typical adults: 60 to 80 cm at normal walking pace. Walk a known distance at that pace and divide it by your steps.")
             .font(.footnote).foregroundStyle(.secondary)
-    }
-
-    private var slowStepLength: Double {
-        StepModel(referenceStepLength: stride.strideMeters).stepLength(atSpeedKmh: 3)
     }
 
     private var weekdayName: String {

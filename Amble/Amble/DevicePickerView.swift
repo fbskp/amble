@@ -63,7 +63,7 @@ struct DevicePickerView: View {
                 // The most common reason for a pad that "cannot be found": something else holds its only connection.
                 if showHint, pad.isScanning, !pad.isDemo, pad.state != .connected, !pad.discovered.contains(where: \.looksLikePad) {
                     Section {
-                        Label("No walking pad found yet. A pad accepts only one connection, so make sure no other phone or app is connected to it, including Amble on another device.",
+                        Label("No walking pad found yet. A pad accepts only one connection, so make sure no other phone or app is connected to it, including Amble on another device. If you use the pad with several phones, turn on “Disconnect automatically” in Settings on each one.",
                               systemImage: "info.circle")
                             .font(.footnote).foregroundStyle(.secondary)
                     }
@@ -133,6 +133,7 @@ struct DevicePickerView: View {
     }
 
     private var statusText: String {
+        if pad.releaseReason == .auto { return String(localized: "Disconnected, pad is free") }
         if pad.isReleased { return String(localized: "Disconnected") }
         return switch pad.state {
         case .connected: String(localized: "Connected")

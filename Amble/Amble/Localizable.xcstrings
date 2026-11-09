@@ -450,6 +450,16 @@
         }
       }
     },
+    "Connection": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbindung"
+          }
+        }
+      }
+    },
     "Control your pad": {
       "localizations": {
         "de": {
@@ -540,12 +550,32 @@
         }
       }
     },
+    "Disconnect automatically": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatisch trennen"
+          }
+        }
+      }
+    },
     "Disconnected": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Getrennt"
+          }
+        }
+      }
+    },
+    "Disconnected, pad is free": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Getrennt, Pad ist frei"
           }
         }
       }
@@ -930,12 +960,12 @@
         }
       }
     },
-    "No walking pad found yet. A pad accepts only one connection, so make sure no other phone or app is connected to it, including Amble on another device.": {
+    "No walking pad found yet. A pad accepts only one connection, so make sure no other phone or app is connected to it, including Amble on another device. If you use the pad with several phones, turn on “Disconnect automatically” in Settings on each one.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Noch kein Walking Pad gefunden. Ein Pad akzeptiert nur eine Verbindung: Stelle sicher, dass kein anderes Handy und keine andere App damit verbunden ist, auch nicht Amble auf einem anderen Gerät."
+            "value": "Noch kein Walking Pad gefunden. Ein Pad akzeptiert nur eine Verbindung: Stelle sicher, dass kein anderes Handy und keine andere App damit verbunden ist, auch nicht Amble auf einem anderen Gerät. Wenn du das Pad mit mehreren Handys nutzt, aktiviere „Automatisch trennen“ in den Einstellungen auf jedem Handy."
           }
         }
       }
@@ -1120,16 +1150,6 @@
         }
       }
     },
-    "Result": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ergebnis"
-          }
-        }
-      }
-    },
     "Resume": {
       "localizations": {
         "de": {
@@ -1260,6 +1280,16 @@
         }
       }
     },
+    "Some pads accept only one Bluetooth connection. With this option, Amble disconnects from the pad automatically while in the background, as soon as the pad is switched off or nothing has happened for 10 minutes. Then another device can connect. Opening Amble reconnects.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einige Pads akzeptieren nur eine Bluetooth-Verbindung. Mit dieser Option trennt Amble im Hintergrund automatisch die Verbindung zum Pad, sobald es ausgeschaltet wird oder 10 Minuten nichts passiert. Dann kann sich ein anderes Gerät verbinden. Beim Öffnen von Amble wird wieder verbunden."
+          }
+        }
+      }
+    },
     "Source": {
       "localizations": {
         "de": {
@@ -1360,26 +1390,6 @@
         }
       }
     },
-    "Step length at 3 km/h": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schrittlänge bei 3 km/h"
-          }
-        }
-      }
-    },
-    "Step length at normal pace": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schrittlänge bei normalem Tempo"
-          }
-        }
-      }
-    },
     "Step length: %lld cm": {
       "localizations": {
         "de": {
@@ -1396,16 +1406,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Schritte (gesch.)"
-          }
-        }
-      }
-    },
-    "Steps per km at 3 km/h": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schritte pro km bei 3 km/h"
           }
         }
       }

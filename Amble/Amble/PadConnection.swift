@@ -53,9 +53,13 @@ final class PadConnection: NSObject {
     private(set) var pauseConfirmed = false
     /// Demo mode: a simulated pad. Nothing is sent over Bluetooth and walks are not saved to Health.
     private(set) var isDemo = false
-    /// The user disconnected on purpose, to free the pad for another phone or app. No automatic reconnect
-    /// (also none in the background) until they tap Connect or the app is launched again.
-    private(set) var isReleased = false
+    /// Whether Amble has let go of the pad, on purpose by the user or automatically in share mode.
+    /// No automatic reconnect in the background until the user taps Connect or the app is opened (auto only).
+    enum ReleaseReason { case user, auto }
+    /// Nil: Amble holds or seeks the pad. .user: disconnected on purpose, waits for Connect.
+    /// .auto: let go for other phones (share mode); reconnects when the app is opened.
+    private(set) var releaseReason: ReleaseReason?
+    var isReleased: Bool { releaseReason != nil }
 
     // Battery: the pad streams about two data packets per second whenever it is connected, even when idle, and each
     // one wakes the app in the background. So live data is only requested while it is needed; the status
@@ -63,7 +67,8 @@ final class PadConnection: NSObject {
     private var dataCharacteristic: CBCharacteristic?
     private var dataSubscribed = false
     private var isForeground = UIApplication.shared.applicationState != .background
-    private var wantsLiveData: Bool { isForeground || isBeltActive || isStopping || active != nil }
+    // Share mode keeps data on while connected, so the idle check in ingest() can run in the background.
+    private var wantsLiveData: Bool { isForeground || isBeltActive || isStopping || active != nil || disconnectsWhenIdle }
 
     private func updateDataSubscription() {
         guard !isDemo, state == .connected, let p = peripheral, let c = dataCharacteristic else { return }
@@ -76,6 +81,10 @@ final class PadConnection: NSObject {
 
     private func appEnteredBackground() {
         isForeground = false
+        // The connection was lost in the foreground and a reconnect is pending: do not let it grab the pad later.
+        if disconnectsWhenIdle, state != .connected, peripheral != nil, releaseReason == nil {
+            releaseForOthers("pending reconnect on entering background")
+        }
         updateDataSubscription()
     }
     private var demo: DemoPad?
@@ -103,6 +112,17 @@ final class PadConnection: NSObject {
     private let log = Logger(subsystem: "org.biskup.amble", category: "ble")
     private static let savedIDKey = "padPeripheralID"
     private static let savedNameKey = "padPeripheralName"
+    private static let disconnectWhenIdleKey = "disconnectWhenIdle"
+    /// For pads used by more than one phone: Amble lets go of an idle pad while in the background, so another phone can connect.
+    var disconnectsWhenIdle = UserDefaults.standard.bool(forKey: PadConnection.disconnectWhenIdleKey) {
+        didSet {
+            UserDefaults.standard.set(disconnectsWhenIdle, forKey: Self.disconnectWhenIdleKey)
+            updateDataSubscription()
+        }
+    }
+    private static let idleReleaseDelay: TimeInterval = 10 * 60
+    /// Last moment the pad was in use (belt moving or a walk open). Nil while not connected.
+    private var idleSince: Date?
     private static let uuidData = CBUUID(string: FTMSUUID.treadmillData)
     private static let uuidTraining = CBUUID(string: FTMSUUID.trainingStatus)
     private static let uuidMachine = CBUUID(string: FTMSUUID.machineStatus)
@@ -346,6 +366,7 @@ final class PadConnection: NSObject {
     /// Called when the app comes to the foreground.
     private func appBecameActive() {
         isForeground = true
+        if releaseReason == .auto { reconnect() }
         updateDataSubscription()
         flushPendingWalks()
         startLiveActivity()
@@ -667,7 +688,7 @@ final class PadConnection: NSObject {
 
     private func open(_ p: CBPeripheral, name: String) {
         userDisconnected = false
-        isReleased = false
+        releaseReason = nil
         connectionError = nil
         deviceName = name
         peripheral = p
@@ -722,10 +743,21 @@ final class PadConnection: NSObject {
     /// The saved pad is kept; Amble stays disconnected until `reconnect()`.
     func disconnect() {
         guard !isDemo, !isWalkInProgress else { return }
+        release(.user)
+    }
+
+    /// Share mode: lets go of the pad so another phone can take it. Reconnects when the app is opened.
+    private func releaseForOthers(_ why: String) {
+        guard disconnectsWhenIdle, !isDemo, !isWalkInProgress, releaseReason == nil else { return }
+        log.notice("released pad for other phones: \(why)")
+        release(.auto)
+    }
+
+    private func release(_ reason: ReleaseReason) {
         userDisconnected = true
-        isReleased = true
+        releaseReason = reason
         finishSession()
-        if let p = peripheral { central.cancelPeripheralConnection(p) }
+        if let p = peripheral { central.cancelPeripheralConnection(p) }   // also cancels a pending connect
         resetSession()
         connectionError = nil
         state = .idle
@@ -734,7 +766,7 @@ final class PadConnection: NSObject {
     /// Connects to the saved pad again after `disconnect()`.
     func reconnect() {
         guard isReleased else { return }
-        isReleased = false
+        releaseReason = nil
         connectSaved()
     }
 
@@ -742,7 +774,7 @@ final class PadConnection: NSObject {
     func forgetDevice() {
         guard !isWalkInProgress else { return }
         userDisconnected = true
-        isReleased = false
+        releaseReason = nil
         finishSession()
         if let p = peripheral { central.cancelPeripheralConnection(p) }
         peripheral = nil
@@ -807,6 +839,7 @@ final class PadConnection: NSObject {
         inFlight = nil
         lastError = nil
         lastSpeedCommand = nil
+        idleSince = nil
     }
 
     private func ingest(_ packet: TreadmillData) {
@@ -840,6 +873,12 @@ final class PadConnection: NSObject {
         updateLiveActivity()
         // Forgotten pause: close the walk after 30 minutes, ending where the pause began.
         if let pausedAt = active?.pausedAt, Date().timeIntervalSince(pausedAt) > 30 * 60 { finishSession() }
+        // Share mode: an idle pad is let go in the background so another phone can use it.
+        let inUse = active != nil || (d.speedKmh ?? 0) > 0.1
+        if inUse || idleSince == nil { idleSince = Date() }
+        if disconnectsWhenIdle, !isForeground, let since = idleSince, Date().timeIntervalSince(since) > Self.idleReleaseDelay {
+            releaseForOthers("idle in background")
+        }
     }
 }
 
@@ -866,6 +905,10 @@ extension PadConnection: CBCentralManagerDelegate {
                         central.connect(p)
                     default: state = .connecting
                     }
+                } else if disconnectsWhenIdle, UIApplication.shared.applicationState == .background {
+                    // Share mode: never grab the pad from the background; reconnect when the app is opened.
+                    releaseReason = .auto
+                    state = .idle
                 } else { connectSaved() }
             case .poweredOff: state = .bluetoothUnavailable(String(localized: "Bluetooth is off"))
             case .unauthorized: state = .bluetoothUnavailable(String(localized: "Bluetooth permission denied (Settings > Amble)"))
@@ -928,8 +971,14 @@ extension PadConnection: CBCentralManagerDelegate {
         MainActor.assumeIsolated {
             log.notice("disconnected: \(error?.localizedDescription ?? "no error")")
             if isDemo { return }   // the real link was dropped on purpose when the demo began
+            let wasWalking = isWalkInProgress   // read before anything changes: it depends on state == .connected
             finishSession()
             guard !userDisconnected, peripheral?.identifier == p.identifier else { return }
+            // Share mode: a pad switched off while we are in the background must not be grabbed again when it comes back.
+            if disconnectsWhenIdle, !isForeground, !wasWalking {
+                releaseForOthers("pad gone while in background")
+                return
+            }
             // Connection lost: ask iOS to reconnect as soon as the pad is back in range.
             state = .connecting
             central.connect(p)
@@ -957,6 +1006,7 @@ extension PadConnection: CBPeripheralDelegate {
             // Verified: remember it as the last pad.
             save(p, name: deviceName ?? p.name ?? String(localized: "Walking pad"))
             state = .connected
+            idleSince = Date()
             features = nil
             pauseSupported = true
             pauseConfirmed = false

@@ -27,6 +27,7 @@ Amble is a personal project. It is **not affiliated with** Sportstech, FITHOME o
 - Live speed, distance, time and energy; steps are estimated (the pad reports none), see below
 - Start, stop, pause and resume; speed in 0.1 km/h steps, quick speeds by tapping the speed
 - Device picker that remembers the last pad and reconnects by itself, also in the background
+- Optional automatic disconnect for a pad used by several iPhones: Amble lets go of an idle pad in the background so another phone can connect
 - Each walk is saved to Apple Health as an indoor walking workout (distance, energy, estimated steps, pauses);
   walks wait in a queue while the phone is locked and are saved on unlock
 - Live Activity on the lock screen and in the Dynamic Island, showing speed, distance and time

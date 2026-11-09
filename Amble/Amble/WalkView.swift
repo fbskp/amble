@@ -131,7 +131,12 @@ struct WalkView: View {
     private var connectionText: String {
         switch pad.state {
         case .bluetoothUnavailable(let why): why
-        case .idle: pad.isReleased ? String(localized: "Disconnected") : String(localized: "Select a pad")
+        case .idle:
+            switch pad.releaseReason {
+            case .auto: String(localized: "Disconnected, pad is free")
+            case .user: String(localized: "Disconnected")
+            case nil: String(localized: "Select a pad")
+            }
         case .connecting: String(localized: "Connecting to \(pad.deviceName ?? String(localized: "pad"))...")
         case .connected: pad.isDemo ? String(localized: "Demo mode") : (pad.deviceName ?? String(localized: "Connected"))
         case .disconnected: String(localized: "Pad not reachable")
