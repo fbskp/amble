@@ -155,12 +155,14 @@ struct AchievementsView: View {
 
     /// Five quick taps on the counter switch debug mode on or off.
     private func counterTapped() {
+        #if DEBUG
         counterTaps = Date().timeIntervalSince(lastTap) < 1.5 ? counterTaps + 1 : 1
         lastTap = Date()
         guard counterTaps >= 5 else { return }
         counterTaps = 0
         debugMode.toggle()
         UINotificationFeedbackGenerator().notificationOccurred(.success)
+        #endif
     }
 
     private var sorted: [AchievementID] {

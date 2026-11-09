@@ -29,7 +29,7 @@ Amble is a personal project. It is **not affiliated with** Sportstech, FITHOME o
 - Device picker that remembers the last pad and reconnects by itself, also in the background
 - Each walk is saved to Apple Health as an indoor walking workout (distance, energy, estimated steps, pauses);
   walks wait in a queue while the phone is locked and are saved on unlock
-- Live Activity on the lock screen and in the Dynamic Island, with slower / pause / stop / faster buttons
+- Live Activity on the lock screen and in the Dynamic Island, showing speed, distance and time
 - Weekly goals (walks and minutes), progress rings, streaks, and 13 sloth-themed achievements,
   all computed from the walks in Health, so there is no separate database
 - An animated sloth that sleeps, wakes up and walks at the pace of the belt
@@ -90,7 +90,7 @@ The protocol tests use byte captures from a real pad.
 | `Amble/` | The iOS app (SwiftUI) and its Live Activity widget extension, generated from `project.yml` |
 | `Amble/Amble/` | App sources: `PadConnection` (Bluetooth, walk state, Health queue), `HealthWriter`, views, stores |
 | `Amble/AmbleWidgets/` | Live Activity (lock screen and Dynamic Island) |
-| `Amble/Shared/` | Code used by both: theme, sloth artwork, Live Activity state, App Intents for its buttons |
+| `Amble/Shared/` | Code used by both: theme, sloth artwork, Live Activity state |
 | `AmbleCore/` | Pure Swift package: FTMS parsing and commands, step estimate, weekly progress, achievements, with tests |
 | `tools/probe/` | Mac command-line tool used to reverse-engineer the pad |
 
