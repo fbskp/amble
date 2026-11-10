@@ -18,6 +18,7 @@
       }
     },
     "%@ km/h" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -209,16 +210,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "kcal"
-          }
-        }
-      }
-    },
-    "km/h" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "km/h"
           }
         }
       }

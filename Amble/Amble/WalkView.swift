@@ -6,11 +6,21 @@ struct WalkView: View {
     @State private var showPicker = false
     @State private var showSettings = false
     @State private var showPresets = false
+    @Environment(\.units) private var units
+    /// Height this screen has between the bars. The sloth, the gap above it and the speed are sized from it,
+    /// so the proportions hold from a small iPhone to an unfolded one.
+    @State private var availableHeight: CGFloat = 0
+
+    /// Proportions taken from a standard iPhone, where the screen has about 680 pt between the bars.
+    private func share(_ fraction: CGFloat, fallback: CGFloat) -> CGFloat {
+        availableHeight > 0 ? availableHeight * fraction : fallback
+    }
+    private var slothMaxHeight: CGFloat { share(0.36, fallback: 220) }
+    private var topGap: CGFloat { share(0.025, fallback: 16) }
+    private var speedFontSize: CGFloat { min(max(share(0.12, fallback: 80), 60), 120) }
 
     var body: some View {
         VStack(spacing: 14) {
-            // All three tabs draw their title with `ScreenHeader`, so it sits in the same place on each.
-            header
             // No step length in Health: a quiet hint instead of a dialog; the step estimate needs it.
             if pad.stride.needsSetup {
                 Button { showSettings = true } label: {
@@ -22,27 +32,33 @@ struct WalkView: View {
                 .buttonStyle(.plain)
                 .foregroundStyle(Theme.accent)
             }
-            Spacer(minLength: 0)
-            VStack(spacing: 0) {
+            // A small gap above; the free room goes below, between the read-outs and the controls.
+            Spacer(minLength: 0).frame(maxHeight: topGap)
+            VStack(spacing: 4) {
                 // Slower and faster flank the sloth, far from Pause and Stop, so a tap while walking cannot hit those.
-                HStack(spacing: 10) {
-                    stepButton("minus", delta: -0.1)
+                // The buttons sit over the empty margins of the artwork, so the sloth can use the full width.
+                ZStack {
                     // The sloth gives way first when the screen is short.
                     SlothView(speedKmh: pad.data.speedKmh ?? 0, isAwake: pad.isBeltActive || pad.isStopping || (pad.data.speedKmh ?? 0) > 0.1,
                               companion: GoalsStore.shared.companion)
                         .aspectRatio(SlothArt.designSize.width / SlothArt.designSize.height, contentMode: .fit)
-                        .frame(minHeight: 70, maxHeight: 150)
-                    stepButton("plus", delta: 0.1)
+                        .frame(minHeight: 70, maxHeight: slothMaxHeight)
+                    HStack {
+                        stepButton("minus", delta: -0.1)
+                        Spacer()
+                        stepButton("plus", delta: 0.1)
+                    }
                 }
                 .disabled(!pad.canControl || !pad.isBeltActive)
                 HStack(alignment: .firstTextBaseline, spacing: 6) {
-                    Text(pad.data.speedKmh ?? 0, format: .number.precision(.fractionLength(1)))
-                        .font(.system(size: 80, weight: .bold, design: .rounded))
+                    Text(units.speed(pad.data.speedKmh ?? 0), format: .number.precision(.fractionLength(1)))
+                        .font(.system(size: speedFontSize, weight: .bold, design: .rounded))
                         .monospacedDigit()
                         .lineLimit(1)
                         .minimumScaleFactor(0.6)
                         .foregroundStyle(Theme.textGradient)
-                    Text(pad.isPaused ? "paused" : "km/h").font(.title3)
+                    Group { if pad.isPaused { Text("paused") } else { Text(verbatim: units.speedSymbol) } }
+                        .font(.title3)
                         .foregroundStyle(pad.isPaused ? AnyShapeStyle(Theme.accent) : AnyShapeStyle(.secondary))
                     if canPickSpeed {
                         Image(systemName: "chevron.down").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
@@ -59,11 +75,11 @@ struct WalkView: View {
             Grid(horizontalSpacing: 12, verticalSpacing: 10) {
                 GridRow {
                     metric("Steps (est.)", "\(pad.sessionSteps)")
-                    metric("Distance", Self.distance(pad.sessionDistanceMeters))
+                    metric("Distance", units.distance(Double(pad.sessionDistanceMeters)))
                 }
                 GridRow {
                     metric("Time", Self.clock(pad.sessionSeconds))
-                    metric("Energy", "\(pad.data.energyTotalKcal ?? 0) kcal")
+                    metric("Energy", "\(pad.sessionEnergyKcal) kcal")
                 }
             }
             Spacer(minLength: 0)
@@ -71,10 +87,14 @@ struct WalkView: View {
         }
         .padding(.horizontal)
         .padding(.bottom)
+        .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { availableHeight = $0 }
+        // No title: the speed is this screen's headline, and the tab already says where you are.
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar { toolbar }
         .tint(Theme.accent)
-        .alert(pad.healthAlert?.title ?? "",
-               isPresented: Binding(get: { pad.healthAlert != nil }, set: { if !$0 { pad.dismissHealthAlert() } }),
-               presenting: pad.healthAlert) { _ in
+        .alert(pad.healthQueue.alert?.title ?? "",
+               isPresented: Binding(get: { pad.healthQueue.alert != nil }, set: { if !$0 { pad.healthQueue.dismissAlert() } }),
+               presenting: pad.healthQueue.alert) { _ in
             Button("OK") {}
         } message: { alert in
             Text(alert.message)
@@ -87,20 +107,24 @@ struct WalkView: View {
         }
     }
 
-    private var header: some View {
-        ScreenHeader(title: "Amble", style: AnyShapeStyle(Theme.textGradient)) {
+    /// The system navigation bar holds the title, so it keeps clear of rounded display corners on every device.
+    @ToolbarContentBuilder
+    private var toolbar: some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
             Button { showSettings = true } label: { Image(systemName: "gearshape") }
-                .buttonStyle(.plain)
-                .foregroundStyle(.secondary)
-            Spacer()
+                .accessibilityLabel("Settings")
+        }
+        ToolbarItem(placement: .topBarTrailing) {
             Button { showPicker = true } label: {
-                Label(connectionText, systemImage: "circle.fill")
-                    .font(.footnote)
-                    .foregroundStyle(connectionColor)
-                    .labelStyle(.titleAndIcon)
-                Image(systemName: "chevron.down").font(.caption2).foregroundStyle(.secondary)
+                // Icon and text side by side, not a `Label`: a toolbar shows a Label as its icon only.
+                HStack(spacing: 5) {
+                    Image(systemName: "circle.fill").font(.system(size: 8)).foregroundStyle(connectionColor)
+                    Text(connectionText).font(.footnote).foregroundStyle(connectionColor)
+                    Image(systemName: "chevron.down").font(.caption2).foregroundStyle(.secondary)
+                }
+                .fixedSize()
+                .padding(.horizontal, 4)
             }
-            .buttonStyle(.plain)
         }
     }
 
@@ -151,18 +175,13 @@ struct WalkView: View {
         }
     }
 
-    /// Whole metres below 1 km, kilometres with two decimals above.
-    private static func distance(_ meters: Int) -> String {
-        meters < 1000 ? "\(meters) m" : "\((Double(meters) / 1000).formatted(.number.precision(.fractionLength(2)))) km"
-    }
-
     private var canPickSpeed: Bool { pad.canControl && pad.isBeltActive }
 
     private var presets: some View {
         HStack(spacing: 10) {
-            ForEach([1.0, 2.0, 3.0, 4.0, 5.0], id: \.self) { kmh in
-                Button(String(format: "%.0f", kmh)) {
-                    pad.setSpeed(kmh)
+            ForEach(pad.quickSpeeds(kmPerUnit: units.kmPerSpeedUnit), id: \.self) { value in
+                Button(value.formatted(.number.precision(.fractionLength(0...1)))) {
+                    pad.setSpeed(value * units.kmPerSpeedUnit)
                     showPresets = false
                 }
                 .buttonStyle(.bordered)
@@ -175,7 +194,7 @@ struct WalkView: View {
 
     /// Both buttons are the same circle, so minus and plus look equally large.
     private func stepButton(_ symbol: String, delta: Double) -> some View {
-        RepeatButton(size: 56) { pad.changeSpeed(by: delta) } label: {
+        RepeatButton(size: 56) { pad.changeSpeed(by: delta, kmPerUnit: units.kmPerSpeedUnit) } label: {
             Image(systemName: symbol).font(.title2.weight(.bold))
         }
         .accessibilityLabel(delta > 0 ? "Faster" : "Slower")

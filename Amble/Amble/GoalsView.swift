@@ -12,26 +12,26 @@ struct GoalsView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 22) {
-                    ScreenHeader(title: "Goals") {
-                        Spacer()
-                        Button { showSettings = true } label: { Image(systemName: "gearshape") }
-                            .buttonStyle(.plain)
-                            .foregroundStyle(.secondary)
-                            .accessibilityLabel("Settings")
-                    }
                     WeekCard(week: store.currentWeek, goals: store.goals, streak: store.streak, loaded: store.hasLoaded)
                     history
+                    if !store.walks.isEmpty { RecentWalks(entries: store.walks) }
                 }
-                .padding([.horizontal, .bottom])   // no top inset: the header supplies it, as on the other tabs
+                .padding([.horizontal, .bottom])
             }
-            .toolbar(.hidden, for: .navigationBar)
+            .navigationTitle("Goals")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button { showSettings = true } label: { Image(systemName: "gearshape") }
+                        .accessibilityLabel("Settings")
+                }
+            }
             .sheet(isPresented: $showSettings) { SettingsView(stride: pad.stride) }
             .task { await store.refresh() }
             .onChange(of: scenePhase) { _, phase in
                 if phase == .active { Task { await store.refresh() } }
             }
             // A walk was just written to Health: reload the numbers.
-            .onChange(of: pad.savedWalkCount) { _, _ in Task { await store.refresh() } }
+            .onChange(of: pad.healthQueue.savedWalkCount) { _, _ in Task { await store.refresh() } }
         }
     }
 

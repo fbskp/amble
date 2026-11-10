@@ -1,6 +1,6 @@
 # Amble privacy policy
 
-*Last updated: 4 November 2026 · [Deutsche Fassung](PRIVACY.de.md)*
+*Last updated: 10 November 2026 · [Deutsche Fassung](PRIVACY.de.md)*
 
 **In short: Amble does not collect, send or share any of your data. Everything stays on your iPhone and in Apple Health, which you control.**
 
@@ -12,8 +12,8 @@ Amble is a free, non-commercial personal project. It has no ads, no purchases an
 ## What Amble uses, and why
 
 - **Bluetooth.** To find your walking pad and talk to it. Speed, distance, energy and time from the pad are shown in the app and used to record your walks. The name and identifier of the pad you picked are remembered on your phone so Amble can reconnect to it.
-- **Apple Health.** Only with your permission. Amble saves each walk as an indoor walking workout, with distance, active energy, estimated steps and pauses. It reads the walks it saved itself (for your weekly goals and achievements), your average walking step length and your height (to estimate steps). Your Health data stays in Apple Health. Amble does not send it anywhere, and it is never used for advertising. If you turned on iCloud for Health, Apple syncs it between your devices; that is between you and Apple. You can change or revoke access at any time in Settings > Health > Data Access & Devices > Amble.
-- **Storage on your phone.** Your settings (step length source, height, step length), your weekly goals, the dates of achievements you earned, walks waiting to be saved to Health, the walk in progress, and whether you read the welcome notice. A small summary of this week's progress is shared between the app and its home screen widget inside a container on your phone.
+- **Apple Health.** Only with your permission. Amble saves each walk as an indoor walking workout, with distance, active energy, estimated steps and pauses. It reads back the walks it saved itself, with their distance, energy, steps and pauses (for your walk history, weekly goals and achievements), your average walking step length and your height (to estimate steps). It only looks at data Amble wrote itself, not at walks or steps from other apps or devices. Your Health data stays in Apple Health. Amble does not send it anywhere, and it is never used for advertising. If you turned on iCloud for Health, Apple syncs it between your devices; that is between you and Apple. You can change or revoke access at any time in Settings > Health > Data Access & Devices > Amble.
+- **Storage on your phone.** Your settings (step length source, height, step length, units), your weekly goals, the dates of achievements you earned, walks waiting to be saved to Health, the walk in progress, and whether you read the welcome notice. A small summary of this week's progress is shared between the app and its home screen widget inside a container on your phone.
 - **Live Activity and widget.** They show your walk and your weekly progress on the lock screen and home screen. This happens on your device only.
 
 ## What Amble does not do

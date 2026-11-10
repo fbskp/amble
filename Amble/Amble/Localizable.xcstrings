@@ -227,9 +227,6 @@
         }
       }
     },
-    "Amble": {
-      "shouldTranslate": false
-    },
     "Amble can start and stop the belt and change its speed.": {
       "localizations": {
         "de": {
@@ -446,16 +443,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Verbinde..."
-          }
-        }
-      }
-    },
-    "Connection": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verbindung"
           }
         }
       }
@@ -746,16 +733,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Health-Daten sind auf diesem Gerät nicht verfügbar."
-          }
-        }
-      }
-    },
-    "Height: %lld cm": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Größe: %lld cm"
           }
         }
       }
@@ -1390,16 +1367,6 @@
         }
       }
     },
-    "Step length: %lld cm": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schrittlänge: %lld cm"
-          }
-        }
-      }
-    },
     "Steps (est.)": {
       "localizations": {
         "de": {
@@ -1616,16 +1583,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Die Nutzung von Amble erfolgt auf eigene Gefahr."
-          }
-        }
-      }
-    },
-    "Use height from Health (%lld cm)": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Größe aus Health verwenden (%lld cm)"
           }
         }
       }
@@ -1850,16 +1807,6 @@
         }
       }
     },
-    "km/h": {
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "km/h"
-          }
-        }
-      }
-    },
     "pad": {
       "localizations": {
         "de": {
@@ -2046,12 +1993,222 @@
         }
       }
     },
-    "joined your walks. Choose it on the Awards tab.": {
+    "Your reward for walking %lld km in total.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "begleitet jetzt deine Spaziergänge. Wähle es im Reiter „Erfolge“ aus."
+            "value": "Deine Belohnung für insgesamt %lld km."
+          }
+        }
+      }
+    },
+    "Walk together": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gemeinsam gehen"
+          }
+        }
+      }
+    },
+    "Not now": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht jetzt"
+          }
+        }
+      }
+    },
+    "You can change companions on the Awards tab.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du kannst den Begleiter jederzeit im Tab „Erfolge“ wechseln."
+          }
+        }
+      }
+    },
+    "All walks": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Spaziergänge"
+          }
+        }
+      }
+    },
+    "Waiting for Apple Health": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wartet auf Apple Health"
+          }
+        }
+      }
+    },
+    "Speed": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo"
+          }
+        }
+      }
+    },
+    "Average speed": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ø Tempo"
+          }
+        }
+      }
+    },
+    "Pauses": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pausen"
+          }
+        }
+      }
+    },
+    "Stretch": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abschnitt"
+          }
+        }
+      }
+    },
+    "The speed curve is shown for walks recorded with this version of Amble or later.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Tempokurve gibt es für Spaziergänge, die mit dieser oder einer neueren Version von Amble aufgezeichnet wurden."
+          }
+        }
+      }
+    },
+    "Units": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einheiten"
+          }
+        }
+      }
+    },
+    "Automatic": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatisch"
+          }
+        }
+      }
+    },
+    "Metric (km, km/h)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metrisch (km, km/h)"
+          }
+        }
+      }
+    },
+    "Imperial (mi, mph)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imperial (mi, mph)"
+          }
+        }
+      }
+    },
+    "Automatic follows your region. The pad itself always works in km/h; Amble only converts what it shows.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatisch richtet sich nach deiner Region. Das Pad selbst arbeitet immer in km/h; Amble rechnet nur die Anzeige um."
+          }
+        }
+      }
+    },
+    "Height: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Größe: %@"
+          }
+        }
+      }
+    },
+    "Use height from Health (%@)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Größe aus Health verwenden (%@)"
+          }
+        }
+      }
+    },
+    "Step length: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schrittlänge: %@"
+          }
+        }
+      }
+    },
+    "Typical adults: 24 to 31 inches at normal walking pace. Walk a known distance at that pace and divide it by your steps.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Typisch für Erwachsene: 24 bis 31 Zoll bei normalem Gehtempo. Geh in diesem Tempo eine bekannte Strecke und teile sie durch deine Schritte."
+          }
+        }
+      }
+    },
+    "Display": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anzeige"
+          }
+        }
+      }
+    },
+    "About": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Info"
           }
         }
       }

@@ -1,6 +1,6 @@
 # Datenschutzerklärung für Amble
 
-*Stand: 4. November 2026 · [English version](PRIVACY.md)*
+*Stand: 10. November 2026 · [English version](PRIVACY.md)*
 
 **Kurz gesagt: Amble erhebt, sendet und teilt keine deiner Daten. Alles bleibt auf deinem iPhone und in Apple Health, das du selbst kontrollierst.**
 
@@ -12,8 +12,8 @@ Amble ist ein kostenloses, nicht kommerzielles privates Projekt. Es enthält kei
 ## Was Amble nutzt und wofür
 
 - **Bluetooth.** Um dein Walking Pad zu finden und mit ihm zu sprechen. Geschwindigkeit, Strecke, Energie und Zeit vom Pad werden in der App angezeigt und genutzt, um deine Spaziergänge aufzuzeichnen. Name und Kennung des gewählten Pads werden auf deinem Handy gespeichert, damit sich Amble wieder verbinden kann.
-- **Apple Health.** Nur mit deiner Erlaubnis. Amble speichert jeden Spaziergang als Indoor-Geh-Workout mit Strecke, aktiver Energie, geschätzten Schritten und Pausen. Es liest die Spaziergänge, die es selbst gespeichert hat (für deine Wochenziele und Erfolge), deine durchschnittliche Schrittlänge und deine Körpergröße (um Schritte zu schätzen). Deine Health-Daten bleiben in Apple Health. Amble sendet sie nirgendwohin, und sie werden nie für Werbung verwendet. Wenn du iCloud für Health aktiviert hast, synchronisiert Apple sie zwischen deinen Geräten; das geschieht zwischen dir und Apple. Den Zugriff kannst du jederzeit unter Einstellungen > Health > Datenzugriff & Geräte > Amble ändern oder widerrufen.
-- **Speicherung auf deinem Handy.** Deine Einstellungen (Quelle der Schrittlänge, Körpergröße, Schrittlänge), deine Wochenziele, die Daten der erreichten Erfolge, Spaziergänge, die noch auf das Speichern in Health warten, der laufende Spaziergang und ob du den Willkommenshinweis gelesen hast. Eine kleine Zusammenfassung des Fortschritts der aktuellen Woche wird in einem Speicherbereich auf deinem Handy zwischen der App und ihrem Home-Bildschirm-Widget geteilt.
+- **Apple Health.** Nur mit deiner Erlaubnis. Amble speichert jeden Spaziergang als Indoor-Geh-Workout mit Strecke, aktiver Energie, geschätzten Schritten und Pausen. Es liest die Spaziergänge, die es selbst gespeichert hat, mit Strecke, Energie, Schritten und Pausen (für deinen Verlauf, deine Wochenziele und Erfolge), deine durchschnittliche Schrittlänge und deine Körpergröße (um Schritte zu schätzen). Dabei schaut es nur auf Daten, die Amble selbst geschrieben hat, nicht auf Spaziergänge oder Schritte aus anderen Apps oder Geräten. Deine Health-Daten bleiben in Apple Health. Amble sendet sie nirgendwohin, und sie werden nie für Werbung verwendet. Wenn du iCloud für Health aktiviert hast, synchronisiert Apple sie zwischen deinen Geräten; das geschieht zwischen dir und Apple. Den Zugriff kannst du jederzeit unter Einstellungen > Health > Datenzugriff & Geräte > Amble ändern oder widerrufen.
+- **Speicherung auf deinem Handy.** Deine Einstellungen (Quelle der Schrittlänge, Körpergröße, Schrittlänge, Einheiten), deine Wochenziele, die Daten der erreichten Erfolge, Spaziergänge, die noch auf das Speichern in Health warten, der laufende Spaziergang und ob du den Willkommenshinweis gelesen hast. Eine kleine Zusammenfassung des Fortschritts der aktuellen Woche wird in einem Speicherbereich auf deinem Handy zwischen der App und ihrem Home-Bildschirm-Widget geteilt.
 - **Live Activity und Widget.** Sie zeigen deinen Spaziergang und deinen Wochenfortschritt auf dem Sperrbildschirm und dem Home-Bildschirm. Das geschieht nur auf deinem Gerät.
 
 ## Was Amble nicht tut

@@ -10,7 +10,7 @@ settings:
     SWIFT_VERSION: "6.0"
     SWIFT_EMIT_LOC_STRINGS: YES
     MARKETING_VERSION: "1.0"
-    CURRENT_PROJECT_VERSION: "7"
+    CURRENT_PROJECT_VERSION: "8"
 packages:
   AmbleCore:
     path: ../AmbleCore
@@ -44,7 +44,7 @@ targets:
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription: "Amble connects to your walking pad over Bluetooth."
         INFOPLIST_KEY_NSHealthUpdateUsageDescription: "Amble saves your treadmill walks (distance, energy, steps) to Apple Health."
-        INFOPLIST_KEY_NSHealthShareUsageDescription: "Amble reads your average walking step length and your height to estimate steps."
+        INFOPLIST_KEY_NSHealthShareUsageDescription: "Amble reads back the walks it saved, for your history, goals and achievements, and your average step length and height to estimate steps."
         INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
   AmbleWidgets:
     type: app-extension

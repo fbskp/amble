@@ -42,13 +42,13 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Amble liest deine durchschnittliche Schrittlänge und deine Körpergröße, um Schritte zu schätzen."
+            "value": "Amble liest die Spaziergänge, die es gespeichert hat, für Verlauf, Ziele und Erfolge, und deine durchschnittliche Schrittlänge und Körpergröße, um Schritte zu schätzen."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Amble reads your average walking step length and your height to estimate steps."
+            "value": "Amble reads back the walks it saved, for your history, goals and achievements, and your average step length and height to estimate steps."
           }
         }
       }

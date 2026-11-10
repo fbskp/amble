@@ -82,6 +82,37 @@ public struct SpeedRange: Equatable, Sendable {
         return normalized(base + (delta < 0 ? -size : size))
     }
 
+    /// Kilometres in one mile, for showing speeds in mph.
+    public static let kmPerMile = 1.609344
+
+    /// Round speeds inside the range for quick-pick buttons, in the unit shown (`kmPerUnit` 1 for km/h,
+    /// `kmPerMile` for mph). Whole values, or halves when there would be fewer than four whole ones;
+    /// thinned out evenly when there are more than `limit`.
+    public func quickSpeeds(limit: Int = 6, kmPerUnit: Double = 1) -> [Double] {
+        let low = min / kmPerUnit, high = max / kmPerUnit
+        func values(every size: Double) -> [Double] {
+            var result: [Double] = []
+            var v = Swift.max(1, (low / size).rounded(.up) * size)
+            while v <= high + 1e-9 { result.append(v); v += size }
+            return result
+        }
+        var all = values(every: 1)
+        if all.count < 4 { all = values(every: 0.5) }
+        guard !all.isEmpty else { return [(normalized(min) / kmPerUnit * 10).rounded() / 10] }
+        let every = Swift.max(1, Int((Double(all.count) / Double(Swift.max(1, limit))).rounded(.up)))
+        return Swift.stride(from: 0, to: all.count, by: every).map { all[$0] }
+    }
+
+    /// One press of a speed button in the unit shown. In mph the target is the next round tenth of a mile per
+    /// hour, as close as the pad's own steps allow; the pad always moves at least one of its steps.
+    public func stepped(from base: Double, by delta: Double, kmPerUnit: Double) -> Double {
+        guard kmPerUnit != 1, delta != 0 else { return stepped(from: base, by: delta) }
+        let grid = abs(delta)
+        let shown = (base / kmPerUnit / grid).rounded() * grid
+        let target = normalized((shown + delta) * kmPerUnit)
+        return target == normalized(base) ? stepped(from: base, by: delta) : target
+    }
+
     /// Clamps to the range and snaps to the step size.
     public func normalized(_ kmh: Double) -> Double {
         let clamped = Swift.max(min, Swift.min(max, kmh))

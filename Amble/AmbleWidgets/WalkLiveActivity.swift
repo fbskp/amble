@@ -20,13 +20,14 @@ private struct WalkTimer: View {
     }
 }
 
-private func distanceText(_ meters: Int) -> String {
-    meters < 1000 ? "\(meters) m" : "\((Double(meters) / 1000).formatted(.number.precision(.fractionLength(2)))) km"
-}
+private func distanceText(_ meters: Int) -> String { Units.current.distance(Double(meters)) }
 
-/// Speed with one decimal, in the user's number format (3,5 in German).
-private func speedText(_ kmh: Double) -> String {
-    kmh.formatted(.number.precision(.fractionLength(1)))
+/// Speed with one decimal in the unit chosen in the app, in the user's number format (3,5 in German).
+private func speedText(_ kmh: Double) -> String { Units.current.speedValue(kmh) }
+
+/// "paused", or the speed unit.
+private func speedLabel(_ state: WalkActivityAttributes.ContentState) -> Text {
+    state.isPaused ? Text("paused") : Text(verbatim: Units.current.speedSymbol)
 }
 
 struct WalkLiveActivity: Widget {
@@ -40,7 +41,7 @@ struct WalkLiveActivity: Widget {
                 DynamicIslandExpandedRegion(.leading) {
                     HStack(spacing: 6) {
                         SlothFaceView().frame(width: 30, height: 30)
-                        Text("\(speedText(context.state.speedKmh)) km/h")
+                        Text(verbatim: Units.current.speedText(context.state.speedKmh))
                             .font(.headline)
                             .foregroundStyle(Theme.green)
                     }
@@ -100,7 +101,7 @@ private struct SmallWatchView: View {
             HStack(alignment: .firstTextBaseline, spacing: 4) {
                 Text(speedText(context.state.speedKmh))
                     .font(.title2.weight(.bold)).monospacedDigit()
-                Text(context.state.isPaused ? "paused" : "km/h").font(.caption2)
+                speedLabel(context.state).font(.caption2)
                 Spacer(minLength: 2)
                 WalkTimer(state: context.state).font(.subheadline.weight(.semibold).monospacedDigit())
             }
@@ -126,22 +127,22 @@ private struct LockScreenView: View {
                     .multilineTextAlignment(.trailing)
             }
             HStack {
-                metric(speedText(context.state.speedKmh), context.state.isPaused ? "paused" : "km/h")
+                metric(speedText(context.state.speedKmh), speedLabel(context.state))
                 Spacer()
-                metric(distanceText(context.state.distanceMeters), "distance")
+                metric(distanceText(context.state.distanceMeters), Text("distance"))
                 Spacer()
-                metric("~\(context.state.steps)", "steps")
+                metric("~\(context.state.steps)", Text("steps"))
                 Spacer()
-                metric("\(context.state.energyKcal)", "kcal")
+                metric("\(context.state.energyKcal)", Text("kcal"))
             }
         }
         .foregroundStyle(.white)
     }
 
-    private func metric(_ value: String, _ title: LocalizedStringKey) -> some View {
+    private func metric(_ value: String, _ title: Text) -> some View {
         VStack(spacing: 2) {
             Text(value).font(.title3.weight(.semibold)).monospacedDigit()
-            Text(title).font(.caption).foregroundStyle(.white.opacity(0.75))
+            title.font(.caption).foregroundStyle(.white.opacity(0.75))
         }
     }
 }

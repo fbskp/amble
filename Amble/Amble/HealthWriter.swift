@@ -1,30 +1,6 @@
 import Foundation
 import HealthKit
-
-/// One finished belt session, ready to be written to Apple Health.
-/// A stretch of a walk during which the belt was paused.
-struct WalkPause: Sendable, Codable, Equatable {
-    var start: Date
-    var end: Date
-}
-
-struct WalkSession: Sendable, Codable {
-    var start: Date
-    var end: Date
-    var distanceMeters: Double
-    var energyKcal: Double
-    var steps: Int
-    /// Optional so walks queued by older versions still decode.
-    var pauses: [WalkPause]? = nil
-    /// Failed save attempts while Health was readable. Optional so older queued walks still decode.
-    var saveAttempts: Int? = nil
-
-    /// Time actually walked: the span minus paused time.
-    var activeSeconds: Double {
-        let paused = (pauses ?? []).reduce(0) { $0 + $1.end.timeIntervalSince($1.start) }
-        return max(0, end.timeIntervalSince(start) - paused)
-    }
-}
+import AmbleCore
 
 enum HealthError: LocalizedError {
     case unavailable, notAuthorized
@@ -50,9 +26,11 @@ final class HealthWriter {
          HKQuantityType(.activeEnergyBurned)]
     }
 
-    /// Read access is only used to find the user's step length and height.
+    /// Read access: the user's step length and height (for the step estimate), and the walks Amble saved itself
+    /// with their distance, energy and steps (for the history). Queries for those are limited to Amble's own data.
     private var readTypes: Set<HKObjectType> {
-        [HKQuantityType(.walkingStepLength), HKQuantityType(.height), HKObjectType.workoutType()]
+        [HKQuantityType(.walkingStepLength), HKQuantityType(.height), HKObjectType.workoutType(),
+         HKQuantityType(.distanceWalkingRunning), HKQuantityType(.activeEnergyBurned), HKQuantityType(.stepCount)]
     }
 
     func requestAuthorization() async throws {
@@ -77,12 +55,62 @@ final class HealthWriter {
             func sum(_ id: HKQuantityTypeIdentifier, _ unit: HKUnit) -> Double {
                 w.statistics(for: HKQuantityType(id))?.sumQuantity()?.doubleValue(for: unit) ?? 0
             }
-            // `duration` excludes paused time; shortening `end` keeps `activeSeconds` right for goals.
-            return WalkSession(start: w.startDate, end: w.startDate.addingTimeInterval(w.duration),
-                               distanceMeters: sum(.distanceWalkingRunning, .meter()),
-                               energyKcal: sum(.activeEnergyBurned, .kilocalorie()),
-                               steps: Int(sum(.stepCount, .count())))
+            // Pauses come back from the workout's pause and resume events.
+            var pauses: [WalkPause] = []
+            var pausedAt: Date?
+            for event in w.workoutEvents ?? [] {
+                switch event.type {
+                case .pause: pausedAt = event.dateInterval.start
+                case .resume:
+                    if let start = pausedAt { pauses.append(WalkPause(start: start, end: event.dateInterval.start)) }
+                    pausedAt = nil
+                default: break
+                }
+            }
+            var walk = WalkSession(start: w.startDate, end: w.endDate,
+                                   distanceMeters: sum(.distanceWalkingRunning, .meter()),
+                                   energyKcal: sum(.activeEnergyBurned, .kilocalorie()),
+                                   steps: Int(sum(.stepCount, .count())),
+                                   pauses: pauses.isEmpty ? nil : pauses)
+            // `duration` excludes paused time. If the events do not explain the difference, shorten `end`
+            // instead, so `activeSeconds` stays right for goals.
+            if abs(walk.activeSeconds - w.duration) > 1 {
+                walk.end = w.startDate.addingTimeInterval(w.duration)
+                walk.pauses = nil
+            }
+            return walk
         }
+    }
+
+    /// The walk minute by minute, from the samples Amble saved with it. Walks saved before Amble wrote
+    /// minutes come back as one segment. Empty when Health is unavailable or not readable.
+    func readSegments(for walk: WalkSession) async -> [WalkSegment] {
+        guard HKHealthStore.isHealthDataAvailable() else { return [] }
+        let mine = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            HKQuery.predicateForObjects(from: HKSource.default()),
+            HKQuery.predicateForSamples(withStart: walk.start, end: walk.end, options: [.strictStartDate, .strictEndDate]),
+        ])
+        let distance = HKQuantityType(.distanceWalkingRunning)
+        let energy = HKQuantityType(.activeEnergyBurned)
+        let steps = HKQuantityType(.stepCount)
+        let query = HKSampleQueryDescriptor(
+            predicates: [distance, energy, steps].map { HKSamplePredicate.quantitySample(type: $0, predicate: mine) },
+            sortDescriptors: [SortDescriptor(\.startDate)])
+        guard let samples = try? await query.result(for: store) else { return [] }
+        // The three kinds of sample of one minute share its start and end.
+        var byStart: [Date: WalkSegment] = [:]
+        for sample in samples {
+            var segment = byStart[sample.startDate]
+                ?? WalkSegment(start: sample.startDate, end: sample.endDate, distanceMeters: 0, energyKcal: 0, steps: 0)
+            switch sample.quantityType {
+            case distance: segment.distanceMeters += sample.quantity.doubleValue(for: .meter())
+            case energy: segment.energyKcal += sample.quantity.doubleValue(for: .kilocalorie())
+            case steps: segment.steps += sample.quantity.doubleValue(for: .count())
+            default: break
+            }
+            byStart[sample.startDate] = segment
+        }
+        return byStart.values.sorted { $0.start < $1.start }
     }
 
     /// Average walking step length (last 90 days) and the latest height. Nil when Health has no data or access is denied.
@@ -128,14 +156,23 @@ final class HealthWriter {
             try await builder.beginCollection(at: walk.start)
 
             var samples: [HKSample] = []
-            func add(_ type: HKQuantityType, _ unit: HKUnit, _ value: Double) {
+            func add(_ type: HKQuantityType, _ unit: HKUnit, _ value: Double, from start: Date, to end: Date) {
                 guard value > 0 else { return }
                 samples.append(HKQuantitySample(type: type, quantity: HKQuantity(unit: unit, doubleValue: value),
-                                                start: walk.start, end: walk.end))
+                                                start: start, end: end))
             }
-            add(HKQuantityType(.distanceWalkingRunning), .meter(), walk.distanceMeters)
-            add(HKQuantityType(.activeEnergyBurned), .kilocalorie(), walk.energyKcal)
-            if writeSteps { add(HKQuantityType(.stepCount), .count(), Double(walk.steps)) }
+            if let segments = walk.segments, !segments.isEmpty {
+                // Minute by minute, so Health (and Amble's history) can show how the pace changed.
+                for (segment, steps) in zip(segments, walk.segmentStepCounts) {
+                    add(HKQuantityType(.distanceWalkingRunning), .meter(), segment.distanceMeters, from: segment.start, to: segment.end)
+                    add(HKQuantityType(.activeEnergyBurned), .kilocalorie(), segment.energyKcal, from: segment.start, to: segment.end)
+                    if writeSteps { add(HKQuantityType(.stepCount), .count(), Double(steps), from: segment.start, to: segment.end) }
+                }
+            } else {
+                add(HKQuantityType(.distanceWalkingRunning), .meter(), walk.distanceMeters, from: walk.start, to: walk.end)
+                add(HKQuantityType(.activeEnergyBurned), .kilocalorie(), walk.energyKcal, from: walk.start, to: walk.end)
+                if writeSteps { add(HKQuantityType(.stepCount), .count(), Double(walk.steps), from: walk.start, to: walk.end) }
+            }
 
             if !samples.isEmpty { try await builder.addSamples(samples) }
             // Paused stretches are recorded as events, so Health excludes them from the workout's duration.

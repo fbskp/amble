@@ -57,13 +57,19 @@ struct AnimalCard: View {
             if earned {
                 Text(isSelected ? "Walking with you" : "Tap to choose")
                     .font(.caption2.weight(.medium)).foregroundStyle(isSelected ? Theme.accent : .secondary)
+                    .multilineTextAlignment(.center)
             } else {
                 let left = max(0, animal.unlockDistanceMeters - distanceMeters) / 1000
                 Text("\(left, format: .number.precision(.fractionLength(1))) km to go")
                     .font(.caption2.weight(.medium)).foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
             }
         }
+        .padding(.horizontal, 6)
+        // Every card is as tall as the tallest one in the row: a caption that wraps (longer in German) must not
+        // make its card bigger than its neighbours.
         .frame(width: 104)
+        .frame(maxHeight: .infinity, alignment: .top)
         .padding(.vertical, 10)
         .background(Theme.accent.opacity(earned ? 0.10 : 0.04), in: RoundedRectangle(cornerRadius: 16))
         .accessibilityElement(children: .combine)
@@ -107,9 +113,6 @@ struct AchievementsView: View {
 
     var body: some View {
         ScrollView {
-            ScreenHeader("Awards")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
             VStack(spacing: 4) {
                 Text("\(store.unlocked.count) of \(AchievementID.allCases.count)")
                     .font(.system(size: 44, weight: .bold, design: .rounded))
@@ -123,7 +126,7 @@ struct AchievementsView: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Companions").font(.headline).padding(.horizontal)
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 10) {
+                    HStack(alignment: .top, spacing: 10) {
                         ForEach(AnimalID.allCases, id: \.self) { animal in
                             let earned = store.unlockedAnimals.contains(animal)
                             Button { if earned { store.companion = animal.companion } } label: {
@@ -135,6 +138,7 @@ struct AchievementsView: View {
                             .disabled(!earned)
                         }
                     }
+                    .fixedSize(horizontal: false, vertical: true)
                     .padding(.horizontal)
                 }
             }
@@ -149,7 +153,7 @@ struct AchievementsView: View {
             }
             .padding()
         }
-        .toolbar(.hidden, for: .navigationBar)
+        .navigationTitle("Awards")
         .task { await store.refresh() }
     }
 
@@ -172,47 +176,127 @@ struct AchievementsView: View {
     }
 }
 
-/// Shown after a walk when a new achievement was earned.
+/// Shown after a walk when something new was earned: a companion gets the whole sheet, achievements a short list.
 struct UnlockSheet: View {
     let ids: [AchievementID]
     var animals: [AnimalID] = []
     let onDone: () -> Void
 
-    private var title: LocalizedStringKey {
-        if !animals.isEmpty { return "New companion" }
-        return ids.count == 1 ? "Achievement unlocked" : "Achievements unlocked"
+    var body: some View {
+        if let animal = animals.last {
+            NewCompanionView(animal: animal, ids: ids, onDone: onDone)
+                .presentationDetents([.large])
+        } else {
+            achievements
+                .presentationDetents([.medium])
+        }
     }
 
-    var body: some View {
+    private var title: LocalizedStringKey { ids.count == 1 ? "Achievement unlocked" : "Achievements unlocked" }
+
+    private var achievements: some View {
         VStack(spacing: 18) {
-            SlothFaceView(companion: animals.first?.companion ?? .sloth).frame(width: 64, height: 64)
+            SlothFaceView(companion: .current).frame(width: 64, height: 64)
             Text(title).font(.title2.bold()).foregroundStyle(Theme.textGradient)
-            ForEach(animals, id: \.self) { animal in
-                VStack(spacing: 2) {
-                    Text(animal.companion.name).font(.headline)
-                    Text("joined your walks. Choose it on the Awards tab.").font(.subheadline).foregroundStyle(.secondary)
-                }
-            }
-            ForEach(ids, id: \.self) { id in
-                HStack(spacing: 14) {
-                    AchievementBadge(id: id, progress: 1, size: 56)
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(id.title).font(.headline)
-                        Text(id.detail).font(.subheadline).foregroundStyle(.secondary)
-                    }
-                    Spacer(minLength: 0)
-                }
-            }
-            Button(action: onDone) {
-                Text("Nice")
-                    .font(.headline).foregroundStyle(.white)
-                    .frame(maxWidth: .infinity, minHeight: 50)
-                    .background(Theme.gradient, in: RoundedRectangle(cornerRadius: 14))
-            }
-            .buttonStyle(.plain)
+            ForEach(ids, id: \.self) { EarnedRow(id: $0) }
+            GradientButton(title: "Nice", action: onDone)
         }
         .padding(24)
-        .presentationDetents([.medium])
+    }
+}
+
+/// A new animal joins: it walks in on its belt, with its name, why it came, and a button to take it along at once.
+private struct NewCompanionView: View {
+    let animal: AnimalID
+    let ids: [AchievementID]
+    let onDone: () -> Void
+
+    @State private var arrived = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    var body: some View {
+        VStack(spacing: 0) {
+            Spacer(minLength: 8)
+            SlothView(speedKmh: 2.5, isAwake: true, companion: animal.companion)
+                .aspectRatio(SlothArt.designSize.width / SlothArt.designSize.height, contentMode: .fit)
+                .frame(minHeight: 110, maxHeight: 210)
+                .padding(.horizontal, 12)
+                .scaleEffect(arrived ? 1 : 0.8)
+                .opacity(arrived ? 1 : 0)
+                // A soft glow behind the animal instead of confetti: this is a calm app.
+                .background {
+                    Circle()
+                        .fill(RadialGradient(colors: [Theme.green.opacity(0.32), Theme.green.opacity(0)],
+                                             center: .center, startRadius: 20, endRadius: 170))
+                        .scaleEffect(arrived ? 1.25 : 0.6)
+                }
+            VStack(spacing: 6) {
+                Text("New companion")
+                    .font(.footnote.weight(.semibold)).textCase(.uppercase).kerning(1.4)
+                    .foregroundStyle(Theme.accent)
+                Text(animal.companion.name)
+                    .font(.system(size: 42, weight: .bold, design: .rounded))
+                    .foregroundStyle(Theme.textGradient)
+                Text("Your reward for walking \(Int(animal.unlockDistanceMeters / 1000)) km in total.")
+                    .font(.body).foregroundStyle(.secondary).multilineTextAlignment(.center)
+            }
+            .padding(.top, 20)
+            if !ids.isEmpty {
+                VStack(spacing: 12) { ForEach(ids, id: \.self) { EarnedRow(id: $0, badgeSize: 44) } }
+                    .padding(14)
+                    .background(Theme.accent.opacity(0.08), in: RoundedRectangle(cornerRadius: 16))
+                    .padding(.top, 22)
+            }
+            Spacer(minLength: 16)
+            VStack(spacing: 6) {
+                GradientButton(title: "Walk together") {
+                    GoalsStore.shared.companion = animal.companion
+                    onDone()
+                }
+                Button("Not now", action: onDone)
+                    .font(.body.weight(.medium)).foregroundStyle(Theme.accent)
+                    .frame(maxWidth: .infinity, minHeight: 44)
+                Text("You can change companions on the Awards tab.")
+                    .font(.caption).foregroundStyle(.secondary).multilineTextAlignment(.center)
+            }
+        }
+        .padding(.horizontal, 24).padding(.bottom, 16)
+        .onAppear {
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
+            withAnimation(reduceMotion ? nil : .spring(response: 0.55, dampingFraction: 0.68).delay(0.15)) { arrived = true }
+        }
+    }
+}
+
+/// One earned achievement: its badge with title and description beside it.
+private struct EarnedRow: View {
+    let id: AchievementID
+    var badgeSize: CGFloat = 56
+
+    var body: some View {
+        HStack(spacing: 14) {
+            AchievementBadge(id: id, progress: 1, size: badgeSize)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(id.title).font(.headline)
+                Text(id.detail).font(.subheadline).foregroundStyle(.secondary)
+            }
+            Spacer(minLength: 0)
+        }
+    }
+}
+
+private struct GradientButton: View {
+    let title: LocalizedStringKey
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .font(.headline).foregroundStyle(.white)
+                .frame(maxWidth: .infinity, minHeight: 50)
+                .background(Theme.gradient, in: RoundedRectangle(cornerRadius: 14))
+        }
+        .buttonStyle(.plain)
     }
 }
 

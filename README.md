@@ -31,10 +31,12 @@ Amble is a personal project. It is **not affiliated with** Sportstech, FITHOME o
 - Each walk is saved to Apple Health as an indoor walking workout (distance, energy, estimated steps, pauses);
   walks wait in a queue while the phone is locked and are saved on unlock
 - Live Activity on the lock screen and in the Dynamic Island, showing speed, distance and time
+- Walk history with each walk's numbers and a speed curve (saved to Health minute by minute)
 - Weekly goals (walks and minutes), progress rings, streaks, and 13 sloth-themed achievements,
   all computed from the walks in Health, so there is no separate database
 - An animated sloth that sleeps, wakes up and walks at the pace of the belt
 - Step length from Apple Health, from your height, or entered by hand
+- Metric or imperial units (km/h or mph), by region or set by hand; the pad itself stays in km/h
 - Home screen widget (small and medium) with this week's progress
 - Demo mode with a simulated pad; demo walks are not saved
 
@@ -89,10 +91,10 @@ The protocol tests use byte captures from a real pad.
 | Path | What it is |
 |---|---|
 | `Amble/` | The iOS app (SwiftUI) and its Live Activity widget extension, generated from `project.yml` |
-| `Amble/Amble/` | App sources: `PadConnection` (Bluetooth, walk state, Health queue), `HealthWriter`, views, stores |
+| `Amble/Amble/` | App sources: `PadConnection` (Bluetooth and belt control), `HealthQueue` and `HealthWriter` (saving walks), `WalkActivityController` (Live Activity), views, stores |
 | `Amble/AmbleWidgets/` | Live Activity (lock screen and Dynamic Island) |
 | `Amble/Shared/` | Code used by both: theme, sloth artwork, Live Activity state |
-| `AmbleCore/` | Pure Swift package: FTMS parsing and commands, step estimate, weekly progress, achievements, with tests |
+| `AmbleCore/` | Pure Swift package: FTMS parsing and commands, step estimate, walk recording (`WalkRecorder`), weekly progress, achievements, with tests |
 | `tools/probe/` | Mac command-line tool used to reverse-engineer the pad |
 
 ## How steps are estimated

@@ -19,6 +19,8 @@ final class GoalsStore {
     private var allWeeks: [WeekSummary] = []
     /// The weeks shown in the chart.
     var weeks: [WeekSummary] { Array(allWeeks.suffix(Self.weeksShown)) }
+    /// Every walk, newest first: those in Health and those still waiting to be saved there.
+    private(set) var walks: [HistoryEntry] = []
     private(set) var hasLoaded = false
     private(set) var healthAvailable = true
 
@@ -111,7 +113,11 @@ final class GoalsStore {
         func record(_ w: WalkSession) -> WalkRecord {
             WalkRecord(start: w.start, durationSeconds: w.activeSeconds, distanceMeters: w.distanceMeters, steps: w.steps)
         }
-        let records = (fromHealth ?? []).map(record) + PadConnection.loadPending().map(record)
+        let pending = HealthQueue.loadPending()
+        let records = (fromHealth ?? []).map(record) + pending.map(record)
+        walks = ((fromHealth ?? []).map { HistoryEntry(walk: $0, isPending: false) }
+                 + pending.map { HistoryEntry(walk: $0, isPending: true) })
+            .sorted { $0.walk.start > $1.walk.start }
 
         allWeeks = WeeklyProgress.summariesForAllHistory(of: records, minimumWeeks: Self.weeksShown, endingAt: now, calendar: calendar)
         updateAchievements(records: records, calendar: calendar, historyRead: fromHealth != nil)
